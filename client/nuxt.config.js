@@ -54,7 +54,18 @@ module.exports = {
   modules: [,
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios' // add this
+    '@nuxtjs/axios', // add this
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '53731057',
+        webvisor: true,
+        clickmap:true,
+        // useCDN:false,
+        trackLinks:true,
+        accurateTrackBounce:true,
+      }
+    ],
   ],
 
   // add this Axios object
