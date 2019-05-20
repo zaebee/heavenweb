@@ -20,10 +20,14 @@
             </b-col>
             <b-col md="3">
               <div class="pb-2 text-center">
-                <a href="#"
-                   @click.prevent="$root.$emit('bv::show::modal', 'requestModal', $event.target)"
-                   class="d-none d-md-block btn btn-info btn-lg button subscribe__button">Заполнить бриф</a>
-                  <span class="help-text">мы ответим очень оперативно</span>
+                <b-btn href="#"
+                  @click.prevent="$root.$emit('bv::show::modal', 'requestModal', $event.target)"
+                  size="lg"
+                  variant="subscribe"
+                  class="d-md-block">
+                  Заполнить бриф
+                </b-btn>
+                  <span class="help-text">мы ответим в течение 12 часов</span>
               </div>
             </b-col>
           </b-row>

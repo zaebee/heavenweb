@@ -4,8 +4,8 @@
       <div class="text-box">
         <h1>Создание и продвижение сайтов</h1>
         <p class="mt-3">Приведем клиентов для вашего бизнеса</p>
-        <nuxt-link class="btn btn-lg btn-info button header__button" to="/recipes">
-          Оставить заявку<span class="ml-2">&rarr;</span>
+        <nuxt-link class="btn btn-lg btn-info btn-header text-center text-md-left mt-4" to="/recipes">
+          Оставить заявку&rarr;
         </nuxt-link>
       </div>
     </header>
@@ -14,13 +14,14 @@
     <subscribe-form></subscribe-form>
 
     <b-container class="pt-4">
-      <h3 class="pb-3">Кейсы по продвижению сайтов</h3>
+      <h3 class="pb-3 text-md-left text-center">Кейсы по продвижению сайтов</h3>
       <b-card-group deck>
         <case-card
-          caption="Яндекс Директ для гостиницы Измайлово, г. Москва."
-          link="https://vk.com/@mudrrrr-keis-yandeks-direkt-dlya-gostinicy-izmailovo-g-moskva"
-          text="Заказчик: OOO «Luxe-tour» — туроператор гостиницы Измайлово, г. Москва. Цель: Бронь номеров в гостинице Измайлово через модуль онлайн бронирования Travelline."
-          img-src="https://pp.userapi.com/c830308/v830308666/16686f/rOpBocDh8_o.jpg"
+          caption="115 заявок по 173 р «Продажа квартир в Турции»"
+          img-alt="115 заявок по 173 р «Продажа квартир в Турции»"
+          img-src="https://pp.userapi.com/c849132/v849132847/e05b5/7hz6fRIyh1I.jpg"
+          link="https://vk.com/@mudrrrr-keis-rsya-kviz-115-zayavok"
+          text="На текущий момент результат с 3-х квизов — 115 заявок по 173 рубля. Я не собираюсь останавливаться и буду продолжать оптимизировать показатели до тех пор пока не состоится первая продажа."
         ></case-card>
 
         <case-card
@@ -42,23 +43,22 @@
       <b-card-group class="pt-3">
         <b-card
           overlay
-          class="card__hidden"
-          img-src="https://pp.userapi.com/c849132/v849132847/e05b5/7hz6fRIyh1I.jpg"
-          img-alt="115 заявок по 173 р «Продажа квартир в Турции»"
+          class="card-hidden"
+          img-src="https://pp.userapi.com/c830308/v830308666/16686f/rOpBocDh8_o.jpg"
           text-variant="white"
           body-class="py-5 shadow"
-          title="115 заявок по 173 р «Продажа квартир в Турции»"
+          title="Яндекс Директ для гостиницы Измайлово, г. Москва."
+          img-alt="Яндекс Директ для гостиницы Измайлово, г. Москва."
         >
-          <p>
-            На текущий момент результат с 3-х квизов — 115 заявок по 173 рубля. Я не собираюсь останавливаться и буду продолжать оптимизировать показатели до тех пор пока не состоится первая продажа.
-          </p>
+          <p>Заказчик: OOO «Luxe-tour» — туроператор гостиницы Измайлово, г. Москва.</p>
+          <p>Цель: Бронь номеров в гостинице Измайлово через модуль онлайн бронирования Travelline.</p>
           <b-button
             rel="nofollow"
-            href="https://vk.com/@mudrrrr-keis-rsya-kviz-115-zayavok"
+            href="https://vk.com/@mudrrrr-keis-yandeks-direkt-dlya-gostinicy-izmailovo-g-moskva"
             size="lg"
             target="_blank"
-            variant="outline-secondary"
-            class="button subscribe__button white__button mt-5">
+            variant="subscribe btn-subscribe-white"
+            class="mt-5">
             Читать полностью
           </b-button>
         </b-card>
@@ -68,7 +68,7 @@
     <action-block></action-block>
 
     <b-container class="pt-4 pb-4">
-      <h3 class="pb-3">Создание и продвижение сайтов</h3>
+      <h3 class="pb-3 text-md-left text-center">Создание и продвижение сайтов</h3>
       <b-row>
         <b-col lg="6" md="6" sm="12" class="mt-3">
           <div class="hovereffect">
@@ -164,6 +164,10 @@
 
       </b-row>
     </b-container>
+
+    <b-container>
+      <footer-nav/>
+    </b-container>
   </div>
 </template>
 
@@ -173,6 +177,7 @@
   import ActionBlock from '~/components/ActionBlock.vue'
   import MainSlider from '~/components/MainSlider.vue'
   import CaseCard from '~/components/CaseCard.vue'
+  import FooterNav from '~/components/FooterNav.vue'
 
   export default {
     head() {
@@ -185,12 +190,13 @@
       SubscribeForm,
       ActionBlock,
       MainSlider,
-      CaseCard
+      CaseCard,
+      FooterNav
     }
   };
 </script>
 
-<style>
+<style scoped>
   header {
     min-height: 100vh;
     background-image: linear-gradient(
@@ -203,26 +209,7 @@
     background-size: cover;
     position: relative;
   }
-  .text-box {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    color: #fff;
-  }
-  .text-box h1 {
-    font-size: 4rem;
-  }
-  .text-box p {
-    font-size: 2rem;
-    font-weight: lighter;
-  }
-
   .shadow {
     background: rgba(0,0,0,.38);
-  }
-  .card__hidden {
-    overflow: hidden;
-    max-height: 360px;
   }
 </style>

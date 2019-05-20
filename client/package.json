@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "heavenweb",
   "version": "1.0.0",
-  "description": "My perfect Nuxt.js project",
+  "description": "Разработка одностраничных сайтов и сопровождение рекламных кампаний direct, adwords. Увеличиваем конверсии с помощью квизов и делаем, что сайт работал на владельца бизнеса.",
   "author": "jordanIsNotACoder",
   "private": true,
   "scripts": {

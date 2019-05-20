@@ -20,7 +20,7 @@ module.exports = {
       { property: 'og:title', content: 'Heavenweb - команда разработки сайтов и рекламного продвижения.' },
       { hid: 'og:description', property: 'og:description', content: 'Разработка одностраничных сайтов и сопровождение рекламных кампаний direct, adwords. Увеличиваем конверсии с помощью квизов и делаем, что сайт работал на владельца бизнеса.' },
       { property: 'og:type', content: 'website' },
-      { property: 'og:image', content: 'https://heavenweb.me/opgraph.png' },
+      { property: 'og:image', content: 'https://heavenweb.me/graph.png' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -31,15 +31,16 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#7DADB7' },
 
   /*
   ** Global CSS
   */
  css: [
-   '~/assets/css/fonts.css',
+   '~/assets/css/queries.scss',
+   '~/assets/css/fonts.scss',
    '~/assets/css/transitions.css',
-   '~/assets/css/buttons.css',
+   '~/assets/css/buttons.scss',
  ], // update this
 
   /*
@@ -52,18 +53,23 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [,
-    // Doc: https://bootstrap-vue.js.org/docs/
+    // '@nuxtjs/dotenv',
     'bootstrap-vue/nuxt',
-    '@nuxtjs/axios', // add this
+    '@nuxtjs/axios',
+    // '@nuxtjs/redirect-module',
+    // [
+    //   '@nuxtjs/google-tag-manager', {
+    //     id: 'GTM-W7SD7X3'
+    //   }
+    // ],
     [
-      '@nuxtjs/yandex-metrika',
-      {
+      '@nuxtjs/yandex-metrika', {
         id: '53731057',
         webvisor: true,
-        clickmap:true,
+        clickmap: true,
         // useCDN:false,
-        trackLinks:true,
-        accurateTrackBounce:true,
+        trackLinks: true,
+        accurateTrackBounce: true,
       }
     ],
   ],

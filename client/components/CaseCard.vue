@@ -12,7 +12,7 @@
   >
     <p v-text="text"></p>
 
-    <b-button target="_blank" :href="link" variant="outline-dark" size="xs" class="btn">Читать полностью</b-button>
+    <b-button target="_blank" :href="link" variant="outline-dark" size="xs">Читать полностью</b-button>
   </b-card>
 </template>
 

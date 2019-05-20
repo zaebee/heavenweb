@@ -14,7 +14,7 @@
             <p>
             Мы подготовили для вас отличную информацию о том,
             как самостоятельно увеличить продажи через сайт!
-            Введите адрес своей почты, чтобы скачать.
+            <br>Напишите адрес своей почты, чтобы скачать.
             </p>
           </div>
           <div class="col-md-4 col-sm-12 mt-4 mb-4">
@@ -35,11 +35,12 @@
               class="invalid-feedback d-block">{{invalidEmail}}</div>
           </div>
           <div class="col-md-2 col-sm-12 text-center">
-            <a
+            <b-btn
               href="#"
               @click.prevent="subscribeForm"
-              class="col-sm-12 btn btn-lg btn-large btn-info button subscribe__button"
-              variant="info">Хочу</a>
+              class="col-sm-12 "
+              size="lg"
+              variant="subscribe">Хочу</b-btn>
           </div>
         </b-form>
       </b-row>
