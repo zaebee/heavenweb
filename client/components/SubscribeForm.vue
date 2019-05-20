@@ -14,7 +14,7 @@
             <p>
             Мы подготовили для вас отличную информацию о том,
             как самостоятельно увеличить продажи через сайт!
-            Введите адрес своей почты, чтобы скачать подборку.
+            Введите адрес своей почты, чтобы скачать.
             </p>
           </div>
           <div class="col-md-4 col-sm-12 mt-4 mb-4">
@@ -36,7 +36,8 @@
           </div>
           <div class="col-md-2 col-sm-12 text-center">
             <a
-              href=""
+              href="#"
+              @click.prevent="subscribeForm"
               class="col-sm-12 btn btn-lg btn-large btn-info button subscribe__button"
               variant="info">Хочу</a>
           </div>
@@ -53,12 +54,6 @@
   import { mapState } from 'vuex'
 
   export default {
-    scrollToTop: true,
-    head () {
-      return {
-        title: `None`
-      }
-    },
     async fetch ({ store, params, error }) {
       // TODO get story by slug from api
     },
@@ -69,7 +64,6 @@
         email: null,
         errors: {},
         subscriberEmail: null,
-        titles: ['психолог и психотерапевт', 'психолога и психотерапевта', 'психологов и психотерапевтов']
       }
     },
     computed: {
@@ -84,7 +78,7 @@
         }
       },
       validEmail () {
-        return !!this.errors.subscriber_email ? '' : ''
+        return this.errors.subscriber_email ? false : true
       },
     },
     methods: {
@@ -112,8 +106,6 @@
 </script>
 
 <style lang="scss">
-  .container-fluid {
-  }
   form {
     label {
       font-size: 1.25rem;
@@ -132,11 +124,7 @@
     }
   }
   .card {
-    border: none;
     box-shadow: 0 15px 40px 5px rgba(21, 24, 36, 0.12);
-    border-radius: 16px;
     background-color: #ffffff;
-    .card-body {
-    }
   }
 </style>

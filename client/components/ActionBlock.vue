@@ -3,25 +3,27 @@
 
     <div class="row mb-5">
       <div class="col-md-12">
-        <b-container fluid class="pt-5 pb-5">
+        <b-container class="pt-5 pb-5">
           <b-row class="align-items-center">
-            <b-col md="2" class="text-center">
+            <b-col md="2" offset="1" class="text-right">
               <div class="pb-2">
-                <img class="rounded-circle" src="/experts/expert-first-small.jpg" alt="Эксперты Меты готовы помочь"/>
-                <img class="rounded-circle" src="/experts/expert-second-small.jpg" alt="Помощь экспертов Меты"/>
-                <img class="rounded-circle" src="/experts/expert-third-small.jpg" alt="Мы всегда рядом"/>
-              </div>
-            </b-col>
-            <b-col md="6">
-              <div class="pb-2">
-                <span><b>НЕ ЗНАЕТЕ С ЧЕГО НАЧАТЬ?</b><br/> ответьте на несколько вопросов, <br class="d-none d-md-block"/>и вы узнаете, чем мы можем быть полезны</span>
+                <b-img thumbnail src="/images/thinking.svg" width="75" alt="Заполните бриф на разработку сайта" class="border-0"/>
               </div>
             </b-col>
             <b-col md="4">
+              <div class="pb-2">
+                <span>
+                  <b>НЕ ЗНАЕТЕ С ЧЕГО НАЧАТЬ?</b>
+                  <br/> Ответьте на несколько вопросов, <br class="d-none d-md-block"/>и вы узнаете, чем мы можем быть полезны
+                </span>
+              </div>
+            </b-col>
+            <b-col md="3">
               <div class="pb-2 text-center">
                 <a href="#"
                    @click.prevent="$root.$emit('bv::show::modal', 'requestModal', $event.target)"
-                   class="d-none d-md-block btn btn-info btn-lg button subscribe__button">Подберите мне психолога</a>
+                   class="d-none d-md-block btn btn-info btn-lg button subscribe__button">Заполнить бриф</a>
+                  <span class="help-text">мы ответим очень оперативно</span>
               </div>
             </b-col>
           </b-row>
