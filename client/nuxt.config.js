@@ -73,6 +73,10 @@ module.exports = {
       }
     ],
   ],
+  bootstrapVue: {
+    bootstrapCSS: false, // Or `css: false`
+    bootstrapVueCSS: false // Or `bvCSS: false`
+  },
 
   // add this Axios object
   axios: {
