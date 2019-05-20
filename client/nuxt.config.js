@@ -77,6 +77,9 @@ module.exports = {
     bootstrapCSS: false, // Or `css: false`
     bootstrapVueCSS: false // Or `bvCSS: false`
   },
+  fontawesome: {
+    component: 'fa'
+  },
 
   // add this Axios object
   axios: {

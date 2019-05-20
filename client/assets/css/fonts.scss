@@ -1,0 +1,30 @@
+$blue: #7dadb7;
+$font-family-base: Lato, sans-serif;
+
+$theme-colors: (
+  "primary": $blue,
+  "danger": #ff4136
+);
+$input-bg: #f1f3f8;
+$input-placeholder-color: rgba(0,0,0,0.3);
+$custom-control-indicator-checked-bg: #f98a6c;
+$custom-control-indicator-checked-box-shadow: #f98a6c;
+$custom-control-indicator-focus-box-shadow: #f98a6c;
+$custom-control-indicator-box-shadow: #f98a6c;
+$navbar-light-toggler-border-color: #fff;
+$navbar-light-color: #000;
+$navbar-light-active-color: #fb8767;
+
+$card-columns-count: 2;
+
+html {
+  font-family: Lato, sans-serif;
+}
+body {
+  font-family: Lato, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: left;
+}
+
+@import "~bootstrap/scss/bootstrap";
