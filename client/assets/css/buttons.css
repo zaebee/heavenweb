@@ -1,0 +1,152 @@
+.button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-family: Lato, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #7DADB7;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: visible;
+}
+.header__button {
+  position: relative;
+  margin-top: 50px;
+  margin-left: -1px;
+  border: 2px solid #7DADB7;
+  padding: 28px 41.5px;
+  -webkit-transition: background-color .25s,color .25s;
+  -o-transition: background-color .25s,color .25s;
+  transition: background-color .25s,color .25s;
+  font-weight: 600;
+}
+
+.header__button_mobile .btn-text{
+    display:inline-block;
+    -webkit-transform:translate(2px,2px);
+    -ms-transform:translate(2px,2px);
+    transform:translate(2px,2px)
+}
+.header__button:hover{
+  background-color: #7DADB7;
+  color:#fff;
+}
+.header__button:hover::after{
+    right:-78px;
+    width:98px
+}
+.header__button:hover .button__text{
+    -webkit-transform:translate(0,2px);
+    -ms-transform:translate(0,2px);
+    transform:translate(0,2px)
+}
+.header__button::after{
+    content:'';
+    position:absolute;
+    top:34px;
+    right:-168px;
+    width:188px;
+    height:1px;
+    -webkit-transition:right .25s,width .25s;
+    -o-transition:right .25s,width .25s;
+    transition:right .25s,width .25s;
+    background-color: #117a8b;
+    -webkit-animation:stick-in-left 1.85s cubic-bezier(.7,0,.04,1) .75s;
+    animation:stick-in-left 1.85s cubic-bezier(.7,0,.04,1) .75s;
+    -webkit-transform-origin:left;
+    -ms-transform-origin:left;
+    transform-origin:left;
+}
+.header-social{
+    -webkit-align-self:flex-end;
+    -ms-flex-item-align:end;
+    align-self:flex-end;
+    -webkit-transform:translateY(11px);
+    -ms-transform:translateY(11px);
+    transform:translateY(11px);
+    margin-right: 0;
+    left: 30px;
+    position: relative;
+}
+.header-social__link{
+    position:relative;
+    padding:3px;
+    margin-right:54.5px;
+    vertical-align:middle
+}
+.header-social__link::before{
+    content:'';
+    position:absolute;
+    z-index:-1;
+    top:-10px;
+    left:-9px;
+    border:none;
+    -webkit-border-radius:50%;
+    border-radius:50%;
+    background-color: #f7b4c8;
+    padding:21px;
+    -webkit-transform:scale(0);
+    -ms-transform:scale(0);
+    transform:scale(0);
+    -webkit-transition:-webkit-transform .25s;
+    transition:-webkit-transform .25s;
+    -o-transition:transform .25s;
+    transition:transform .25s;
+    transition:transform .25s,-webkit-transform .25s;
+}
+.header-social__link:hover path{
+    -webkit-transition:fill .25s;
+    -o-transition:fill .25s;
+    transition:fill .25s;
+    fill:#fff!important
+}
+.header-social__link:hover::before{
+    -webkit-transform:scale(1);
+    -ms-transform:scale(1);
+    transform:scale(1)
+}
+.header-social__link:first-of-type .svg{
+    -webkit-transform:translate(-3px,-3px) scale(.95);
+    -ms-transform:translate(-3px,-3px) scale(.95);
+    transform:translate(-3px,-3px) scale(.95)
+}
+.header-social__link:nth-of-type(2){
+    -webkit-transform:translate(2px,1px);
+    -ms-transform:translate(2px,1px);
+    transform:translate(2px,1px)
+}
+.header-social__link:nth-of-type(2) .svg{
+    -webkit-transform:translate(-2px,-3px);
+    -ms-transform:translate(-2px,-3px);
+    transform:translate(-2px,-3px)
+}
+.header-social__link:last-of-type{
+    margin-right:0
+}
+.header-social__link:last-of-type .svg{
+    -webkit-transform:translate(-2px,-4px);
+    -ms-transform:translate(-2px,-4px);
+    transform:translate(-2px,-4px)
+}
+
+.subscribe__button {
+  font-family: Lato, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border: 2px solid #7DADB7;
+  -webkit-transition: background-color .25s,color .25s;
+  -o-transition: background-color .25s,color .25s;
+  transition: background-color .25s,color .25s;
+}
+.subscribe__button:hover{
+  background-color: #7DADB7;
+  color:#fff;
+}
+.subscribe__button:hover .button__text{
+    -webkit-transform:translate(0,2px);
+    -ms-transform:translate(0,2px);
+    transform:translate(0,2px)
+}
