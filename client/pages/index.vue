@@ -60,8 +60,8 @@
           img-alt="Яндекс Директ для гостиницы Измайлово, г. Москва."
           img-src="https://pp.userapi.com/c830308/v830308666/16686f/rOpBocDh8_o.jpg"
         >
-          <p>Заказчик: OOO «Luxe-tour» — туроператор гостиницы Измайлово, г. Москва.</p>
-          <p>Цель: Бронь номеров в гостинице Измайлово через модуль онлайн бронирования Travelline.</p>
+          <p class="d-none d-md-block">Заказчик: OOO «Luxe-tour» — туроператор гостиницы Измайлово, г. Москва.</p>
+          <p class="d-none d-md-block">Цель: Бронь номеров в гостинице Измайлово через модуль онлайн бронирования Travelline.</p>
           <!-- // TODO show more text -->
           <b-button
             size="lg"
@@ -69,7 +69,7 @@
             rel="nofollow"
             variant="outline-light"
             href="https://vk.com/@mudrrrr-keis-yandeks-direkt-dlya-gostinicy-izmailovo-g-moskva"
-            class="mt-5">
+            class="mt-2 mt-md-5">
             Читать полностью
           </b-button>
         </b-card>

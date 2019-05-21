@@ -1,5 +1,5 @@
 <template>
-  <div class="row mb-5 mt-5">
+  <div class="row mb-2 mb-md-5 mt-2 mt-md-5">
     <div class="col-md-12">
       <b-container class="pt-5 pb-5">
         <b-row class="align-items-center">
