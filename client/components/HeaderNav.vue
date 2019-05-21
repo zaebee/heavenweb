@@ -48,41 +48,33 @@
       </b-collapse>
     </b-navbar>
 
-    <div class="mx-3 mx-md-0" :class="classList">
-      <h1>{{h1}}</h1>
-      <p class="mt-3">{{slogan}}</p>
-      <nuxt-link
-        class="btn btn-lg btn-info btn-header text-center text-md-left mt-4"
-        to="/chat-bot">
-        {{cta}}&rarr;
-      </nuxt-link>
-    </div>
-    <transition name="page">
-      <subscribe-form
-        v-if="visibleForm"
-        :large="large"
-        :btn-go="btnGo"
-        :close-btn="true"
-        :class="{'open': visibleForm}"
-        @hide-lead="$emit('hide-lead')"
-        ></subscribe-form>
-    </transition>
+    <promo-block
+      :h1="h1"
+      :slogan="slogan"
+      :btn-go="btnGo"
+      :large="false"
+      :show-promo="showPromo"
+      :visible-form="visibleForm"
+      @show-lead="$emit('show-lead')"
+      @hide-lead="$emit('hide-lead')"
+    />
+
   </header>
 </template>
 
 <script>
-  import SubscribeForm from '~/components/SubscribeForm.vue'
+  import PromoBlock from '~/components/PromoBlock.vue'
   export default {
     props: {
       large: {
         default: true,
         type: Boolean,
       },
-      visibleForm: {
+      showPromo: {
         default: true,
         type: Boolean
       },
-      showPromo: {
+      visibleForm: {
         default: true,
         type: Boolean
       },
@@ -104,7 +96,11 @@
       },
     },
     components: {
-      SubscribeForm,
+      PromoBlock,
+    },
+    data () {
+      return {
+      }
     },
     computed: {
       classList () {
@@ -114,8 +110,6 @@
         }
       }
     },
-    methods: {
-    }
   };
 </script>
 

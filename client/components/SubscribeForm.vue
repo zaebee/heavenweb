@@ -1,5 +1,6 @@
 <template>
   <div :class="classList">
+    <div>
     <transition name="page">
       <b-alert
         dismissible
@@ -7,6 +8,7 @@
         class="float-right my-3 mr-3"
         variant="info">Спасибо за подписку!</b-alert>
     </transition>
+    </div>
     <b-form
       inline
       v-if="!subscribeSuccess"

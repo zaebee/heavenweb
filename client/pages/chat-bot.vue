@@ -4,6 +4,8 @@
       btn-go="Отправить"
       :large="false"
       :show-promo="false"
+      h1="Чат с девушкой ботом онлайн"
+      slogan="Разрабатываем и внедряем дружелюбных ботов. <br/>Статистика, аналитика, общение. Интеграция с telegram и vk."
       :visible-form="visibleForm"
       @show-lead="showLeadForm"
       @hide-lead="hideLeadForm"
@@ -49,7 +51,7 @@
     },
     data () {
       return {
-        visibleForm: false
+        visibleForm: null
       }
     },
     methods: {

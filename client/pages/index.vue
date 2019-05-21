@@ -10,7 +10,7 @@
 
     <nofear></nofear>
 
-    <b-container fluid class="pt-3 pb-5">
+    <b-container fluid class="pt-3 pb-5 clearfix">
       <subscribe-form
         btn-go="Хочу"
         :large="true"
