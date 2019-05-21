@@ -39,7 +39,7 @@ module.exports = {
  css: [
    '~/assets/css/queries.scss',
    '~/assets/css/fonts.scss',
-   '~/assets/css/transitions.css',
+   '~/assets/css/transitions.scss',
    '~/assets/css/buttons.scss',
  ], // update this
 

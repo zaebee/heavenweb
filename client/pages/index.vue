@@ -1,27 +1,37 @@
 <template>
   <div>
     <header class="mb-5">
-      <div class="text-box">
+      <div class="text-box mx-3 mx-md-0">
         <h1>Создание и продвижение сайтов</h1>
         <p class="mt-3">Приведем клиентов для вашего бизнеса</p>
         <nuxt-link class="btn btn-lg btn-info btn-header text-center text-md-left mt-4" to="/recipes">
           Оставить заявку&rarr;
         </nuxt-link>
+        <subscribe-form
+          btn-go="Хочу"
+          :large="false"
+          ></subscribe-form>
       </div>
     </header>
 
     <nofear></nofear>
-    <subscribe-form></subscribe-form>
+
+    <b-container fluid class="pt-3 pb-5">
+      <subscribe-form
+        btn-go="Хочу"
+        :large="true"
+        ></subscribe-form>
+    </b-container>
 
     <b-container class="pt-4">
-      <h3 class="pb-3 text-md-left text-center">Кейсы по продвижению сайтов</h3>
+      <h2 class="pb-4 text-center">Кейсы по продвижению сайтов</h2>
       <b-card-group deck>
         <case-card
           caption="115 заявок по 173 р «Продажа квартир в Турции»"
           img-alt="115 заявок по 173 р «Продажа квартир в Турции»"
-          img-src="https://pp.userapi.com/c849132/v849132847/e05b5/7hz6fRIyh1I.jpg"
           link="https://vk.com/@mudrrrr-keis-rsya-kviz-115-zayavok"
           text="На текущий момент результат с 3-х квизов — 115 заявок по 173 рубля. Я не собираюсь останавливаться и буду продолжать оптимизировать показатели до тех пор пока не состоится первая продажа."
+          img-src="https://pp.userapi.com/c849132/v849132847/e05b5/7hz6fRIyh1I.jpg"
         ></case-card>
 
         <case-card
@@ -40,24 +50,25 @@
 
       </b-card-group>
 
-      <b-card-group class="pt-3">
+      <b-card-group class="pt-5">
         <b-card
           overlay
-          class="card-hidden"
-          img-src="https://pp.userapi.com/c830308/v830308666/16686f/rOpBocDh8_o.jpg"
           text-variant="white"
-          body-class="py-5 shadow"
+          body-class="py-5 shadow-overlay"
+          class="card-hidden"
           title="Яндекс Директ для гостиницы Измайлово, г. Москва."
           img-alt="Яндекс Директ для гостиницы Измайлово, г. Москва."
+          img-src="https://pp.userapi.com/c830308/v830308666/16686f/rOpBocDh8_o.jpg"
         >
           <p>Заказчик: OOO «Luxe-tour» — туроператор гостиницы Измайлово, г. Москва.</p>
           <p>Цель: Бронь номеров в гостинице Измайлово через модуль онлайн бронирования Travelline.</p>
+          <!-- // TODO show more text -->
           <b-button
-            rel="nofollow"
-            href="https://vk.com/@mudrrrr-keis-yandeks-direkt-dlya-gostinicy-izmailovo-g-moskva"
             size="lg"
             target="_blank"
-            variant="subscribe btn-subscribe-white"
+            rel="nofollow"
+            variant="outline-light"
+            href="https://vk.com/@mudrrrr-keis-yandeks-direkt-dlya-gostinicy-izmailovo-g-moskva"
             class="mt-5">
             Читать полностью
           </b-button>
@@ -65,104 +76,46 @@
       </b-card-group>
     </b-container>
 
-    <action-block></action-block>
+    <b-container fluid>
+      <action-block></action-block>
+    </b-container>
 
     <b-container class="pt-4 pb-4">
-      <h3 class="pb-3 text-md-left text-center">Создание и продвижение сайтов</h3>
-      <b-row>
-        <b-col lg="6" md="6" sm="12" class="mt-3">
-          <div class="hovereffect">
-            <b-img-lazy
-              fluid
-              height="300"
-              class="img-responsive"
-              src="/images/portfolio/bemeta_mainpage.png"
-              alt="">
-            </b-img-lazy>
-            <div class="overlay">
-              <div class="h3 mt-5 text-white">Создание сайта</div>
-              <div class="h2 text-white">Bemeta</div>
-              <p class="text-white">Сервис поиска психотерапевтов</p>
-              <div class="case-footer">
-                <a href="#" class="btn btn-lg btn-outline-light">Посмотреть работу</a>
-                <span class="text-white">bemeta.co</span>
-              </div>
-            </div>
-          </div>
-        </b-col>
-
-        <b-col lg="6" md="6" sm="12" class="mt-3">
-          <div class="hovereffect">
-            <b-img-lazy
-              fluid
-              height="300"
-              class="img-responsive"
-              src="/images/portfolio/whatwhere_mainpage.png"
-              alt="">
-            </b-img-lazy>
-            <div class="overlay">
-              <div>
-                <div class="h3 mt-5 text-white">Создание сайта</div>
-                <div class="h2 text-white">WhatWhere</div>
-                <p class="text-white">Лучшие события рядом и по всему миру</p>
-                <div class="case-footer">
-                  <a href="#" class="btn btn-lg btn-outline-light">Посмотреть работу</a>
-                  <span class="text-white">whatwhere.world</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </b-col>
+      <h2 class="pb-4 text-center">Создание и продвижение сайтов</h2>
+      <b-row class="no-gutters">
+        <slide-block
+          name="Be meta"
+          domain="bemeta.co"
+          slogan="Сервис поиска психотерапевтов"
+          img-src="/images/portfolio/bemeta_mainpage.png"
+          link="/prejects/initial"
+        />
+        <slide-block
+          name="What where"
+          domain="whatwhare.world"
+          slogan="Лучшие события рядом и по всему миру"
+          img-src="/images/portfolio/whatwhere_mainpage.png"
+          link="/prejects/ww"
+        />
 
         <div class="w-100"></div>
 
-        <b-col lg="6" md="6" sm="12" class="mt-0">
-          <div class="hovereffect">
-            <b-img-lazy
-              fluid
-              height="300"
-              class="img-responsive"
-              src="/images/portfolio/happify_mainpage.png"
-              alt="">
-            </b-img-lazy>
-            <div class="overlay">
-              <div>
-                <div class="h3 mt-5 text-white">Создание сайта</div>
-                <div class="h2 text-white">Happify</div>
-                <p class="text-white">Социальная сеть, чтобы стать счастливым</p>
-                <div class="case-footer">
-                  <a href="#" class="btn btn-lg btn-outline-light">Посмотреть работу</a>
-                  <span class="text-white">happify.com</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </b-col>
-
-        <b-col lg="6" md="6" sm="12" class="mt-0">
-          <div class="hovereffect">
-            <b-img-lazy
-              fluid
-              height="300"
-              class="img-responsive"
-              src="/images/portfolio/mebelstock_catalog.png"
-              alt="">
-            </b-img-lazy>
-            <div class="overlay">
-              <div>
-                <div class="h3 mt-5 text-white">Создание сайта</div>
-                <div class="h2 text-white">mebelstock</div>
-                <p class="text-white">Магазин антиквариата и мебели для дома</p>
-                <div class="case-footer">
-                  <a href="#" class="btn btn-lg btn-outline-light">Посмотреть работу</a>
-                  <span class="text-white">mebelstock.com</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </b-col>
-
+        <slide-block
+          name="happy"
+          domain="happify.com"
+          slogan="Социальная сеть, чтобы стать счастливым"
+          img-src="/images/portfolio/happify_mainpage.png"
+          link="/prejects/happy"
+        />
+        <slide-block
+          name="Mebel stock"
+          domain="mebelstock.com"
+          slogan="Магазин антиквариата и мебели для дома"
+          img-src="/images/portfolio/mebelstock_catalog.png"
+          link="/prejects/stock"
+        />
       </b-row>
+      <case-link/>
     </b-container>
 
     <b-container>
@@ -177,6 +130,8 @@
   import ActionBlock from '~/components/ActionBlock.vue'
   import MainSlider from '~/components/MainSlider.vue'
   import CaseCard from '~/components/CaseCard.vue'
+  import CaseLink from '~/components/CaseLink.vue'
+  import SlideBlock from '~/components/SlideBlock.vue'
   import FooterNav from '~/components/FooterNav.vue'
 
   export default {
@@ -191,6 +146,8 @@
       ActionBlock,
       MainSlider,
       CaseCard,
+      CaseLink,
+      SlideBlock,
       FooterNav
     }
   };
@@ -209,7 +166,7 @@
     background-size: cover;
     position: relative;
   }
-  .shadow {
-    background: rgba(0,0,0,.38);
+  .shadow-overlay {
+    background: rgba(0,0,0,.58);
   }
 </style>

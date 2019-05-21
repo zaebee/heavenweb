@@ -9,20 +9,20 @@
           заявки для вашего бизнеса c помощью <br/>квиз-страниц и рекламного трафика.
         </p>
         <img src="/images/ai.svg" class="icon float-left float-md-none mx-auto" alt=""/>
-        <h2 class="pb-1 pt-0 clearfix">Разработаем сайт c нуля</h2>
+        <h2 class="pb-1 pt-1 clearfix">Разработаем сайт <br class="d-sm-block d-md-none"/> c нуля</h2>
         <p class="nofear-item pb-5">
           Настроим конверсионную воронку, систему аналитики (AmoCRM)<br/> и приведем первые заявки для вашего нового бизнеса.
         </p>
       </div>
       <div class="col-md-6">
         <img src="/images/love.svg" class="icon float-left float-md-none mx-auto" alt=""/>
-        <h2 class="pb-1 pt-0 clearfix">Поддержим брошенные сайты</h2>
+        <h2 class="pb-1 pt-1 clearfix">Поддержим брошенные сайты</h2>
         <p class="nofear-item pb-5">
           Мы сможем доработать ваш сайт или взять на ведение брошеную рекламную компанию, мы с радостью поможем вам
           исправить <br/> ошибки и добавить новые фичи.
         </p>
         <img src="/images/suggestion.svg" class="icon float-left float-md-none mx-auto" alt=""/>
-        <h2 class="pb-1 pt-0 clearfix">Настроим рекламную кампанию</h2>
+        <h2 class="pb-1 pt-1 clearfix">Настроим рекламную кампанию</h2>
         <p class="nofear-item pb-5">
           Займемся продвижением вашего ресурса в рекламных сетях direct/adwords/mytraget и оптимизируем ваш сайт под поисковые системы.
           У вас всегда будут конверсии.

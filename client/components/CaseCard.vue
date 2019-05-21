@@ -8,11 +8,10 @@
     rel="nofollow"
     tag="article"
     style="max-width: 50rem;"
-    class="mb-2"
+    class="mb-5 mb-md-2"
   >
     <p v-text="text"></p>
-
-    <b-button target="_blank" :href="link" variant="outline-dark" size="xs">Читать полностью</b-button>
+    <b-button @click.prevent="onSlideStart('link')" target="_blank" :href="link" variant="outline-dark" size="xs">Читать полностью</b-button>
   </b-card>
 </template>
 
@@ -27,6 +26,7 @@
     },
     methods: {
       onSlideStart(slide) {
+        console.log(slide)
         this.sliding = true
       },
       onSlideEnd(slide) {

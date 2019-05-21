@@ -1,52 +1,53 @@
 <template>
-  <b-container>
-    <b-container class="pt-3 pb-5">
-      <transition>
-        <b-alert dismissible :show="!!subscriberEmail" variant="success">Спасибо за подписку!</b-alert>
-      </transition>
-      <b-row v-if="!subscriberEmail" class="align-items-center justify-content-between card">
-        <b-form
-          inline
-          @submit.stop.prevent="subscribeForm"
-          class="card-body col-12 no-gutters">
-          <div class="col-md-6 col-sm-12">
-            <h3>Как увеличить продажи?</h3>
-            <p>
-            Мы подготовили для вас отличную информацию о том,
-            как самостоятельно увеличить продажи через сайт!
-            <br>Напишите адрес своей почты, чтобы скачать.
-            </p>
-          </div>
-          <div class="col-md-4 col-sm-12 mt-4 mb-4">
-            <b-input-group
-              :invalid-feedback="invalidEmail"
-              :valid-feedback="validEmail"
-              :state="stateEmail"
-              class="mr-sm-2 mb-sm-0">
-              <b-input
-                v-model="email"
-                size="lg"
-                :state="stateEmail"
-                id="subscribe_email"
-                placeholder="example@gmail.com" />
-            </b-input-group>
-            <div role="alert"
-              v-show="!stateEmail"
-              class="invalid-feedback d-block">{{invalidEmail}}</div>
-          </div>
-          <div class="col-md-2 col-sm-12 text-center">
-            <b-btn
-              href="#"
-              @click.prevent="subscribeForm"
-              class="col-sm-12 "
-              size="lg"
-              variant="subscribe">Хочу</b-btn>
-          </div>
-        </b-form>
-      </b-row>
-    </b-container>
+  <div :class="classList">
+    <transition>
+      <b-alert
+        dismissible
+        :show="!!subscriberEmail"
+        variant="success">Спасибо за подписку!</b-alert>
+    </transition>
+    <b-form
+      inline
+      v-if="!subscriberEmail"
+      @submit.stop.prevent="subscribeForm"
+      :class="{'px-5': large, 'px-0': !large}"
+      class="card-body col-12 no-gutters">
+      <div v-if="large" class="col-md-6 col-sm-12">
+        <h3>Как увеличить продажи?</h3>
+        <p>
+          Мы подготовили для вас отличную информацию о том,
+          как самостоятельно увеличить продажи через сайт!
+          <br>Напишите адрес своей почты, чтобы скачать.
+        </p>
+      </div>
 
-  </b-container>
+      <div class="col-md-4 col-sm-12 mt-4 mb-4">
+        <b-input-group
+          :invalid-feedback="invalidEmail"
+          :valid-feedback="validEmail"
+          :state="stateEmail"
+          class="mr-sm-2 mb-sm-0">
+          <b-input
+            size="lg"
+            v-model="email"
+            :state="stateEmail"
+            id="subscribe_email"
+            placeholder="example@yandex.ru" />
+        </b-input-group>
+        <div role="alert"
+          v-show="!stateEmail"
+          class="invalid-feedback d-block">{{invalidEmail}}</div>
+      </div>
+
+      <div class="col-md-2 col-sm-12 text-center">
+        <b-btn
+          @click.prevent="subscribeForm"
+          size="lg"
+          class="col-sm-12 "
+          variant="subscribe">{{btnGo}}</b-btn>
+      </div>
+    </b-form>
+  </div>
 </template>
 
 <script>
@@ -58,6 +59,7 @@
     async fetch ({ store, params, error }) {
       // TODO get story by slug from api
     },
+    props: ['large', 'btnGo'],
     components: {
     },
     data () {
@@ -68,6 +70,9 @@
       }
     },
     computed: {
+      classList () {
+        return this.large ? 'row card' : ''
+      },
       stateEmail () {
         return this.errors.subscriber_email ? false : true
       },
