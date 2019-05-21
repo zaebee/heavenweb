@@ -56,7 +56,8 @@ module.exports = {
     // '@nuxtjs/dotenv',
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
-    // '@nuxtjs/redirect-module',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/redirect-module',
     // [
     //   '@nuxtjs/google-tag-manager', {
     //     id: 'GTM-W7SD7X3'
@@ -81,6 +82,22 @@ module.exports = {
   // add this Axios object
   axios: {
     baseURL: "http://localhost:8000/api" // add this
+  },
+  sitemap: {
+    hostname: 'https://heavenweb.me',
+    gzip: true,
+    exclude: [
+      '/admin/**',
+      '/recipes/add',
+    ],
+    routes: [
+      '/',
+      {
+        url: '/projects',
+        changefreq: 'daily',
+        priority: 1,
+      }
+    ]
   },
 
   /*
