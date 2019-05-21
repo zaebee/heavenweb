@@ -10,6 +10,6 @@ router = DefaultRouter()
 router.register(r'recipes', RecipeViewSet)
 
 urlpatterns = [
-    path(r'^api/', include(router.urls)),
-    path(r'^api-token-auth/', obtain_jwt_token),
+    path(r'', include(router.urls)),
+    path(r'token-auth/', obtain_jwt_token),
 ]

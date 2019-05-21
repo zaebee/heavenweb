@@ -3,6 +3,9 @@
     <header-nav
       btn-go="Отправить"
       :large="false"
+      :visible-form="visibleForm"
+      @show-lead="showLeadForm"
+      @hide-lead="hideLeadForm"
     />
 
     <nofear></nofear>
@@ -126,11 +129,18 @@
   import SlideBlock from '~/components/SlideBlock.vue'
   import FooterNav from '~/components/FooterNav.vue'
 
+  import Chat from '~/components/chat/App.vue'
+
   export default {
     head() {
       return {
-        title: "Веб-студия разработки сайтов и рекламного продвижения"
+        title: "Команда разработки web-сайтов и рекламного продвижения в direct/adwords"
       };
+    },
+    data () {
+      return {
+        visibleForm: false
+      }
     },
     components: {
       HeaderNav,
@@ -141,25 +151,21 @@
       CaseCard,
       CaseLink,
       SlideBlock,
-      FooterNav
+      FooterNav,
+      Chat
+    },
+    methods: {
+      showLeadForm (source) {
+        this.visibleForm = true
+        console.log('show', source)
+      },
+      hideLeadForm (source) {
+        this.visibleForm = false
+        console.log('hide', source)
+      }
     }
   };
 </script>
 
 <style scoped>
-  header {
-    min-height: 100vh;
-    background-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.9),
-        rgba(0, 0, 0, 0.4)
-      ),
-      url("/images/banner.jpg");
-    background-position: center;
-    background-size: cover;
-    position: relative;
-  }
-  .shadow-overlay {
-    background: rgba(0,0,0,.58);
-  }
 </style>

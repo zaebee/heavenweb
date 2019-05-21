@@ -31,6 +31,16 @@
             <span>ИП Громов · ИНН 352827679495 · ОГРН 3193525000076</span>
           </li>
         </ul>
+        <p class="help-text text-muted">
+          Иконки предоставлены <a rel="nofollow" target="_blank" href="https://www.flaticon.com/authors/swifticons" title="Swifticons">Swifticons</a>
+          с сайта <a rel="nofollow" target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+          <br/>
+          по лицензии
+          <a href="http://creativecommons.org/licenses/by/3.0/"
+            rel="nofollow"
+            title="Creative Commons BY 3.0"
+            target="_blank">CC 3.0 BY</a>
+        </p>
       </div>
     </b-row>
   </div>

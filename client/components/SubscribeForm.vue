@@ -1,21 +1,18 @@
 <template>
-  <div :class="classList" v-show="visible">
-    <transition>
-      <div
-        class="card-body col-12 no-gutters bottom-0">
-        <b-alert
-          dismissible
-          class="bottom-0"
-          :show="!!subscribeSuccess"
-          variant="success">Спасибо за подписку!</b-alert>
-      </div>
+  <div :class="classList">
+    <transition name="page">
+      <b-alert
+        dismissible
+        :show="!!subscribeSuccess"
+        class="float-right my-3 mr-3"
+        variant="info">Спасибо за подписку!</b-alert>
     </transition>
     <b-form
       inline
       v-if="!subscribeSuccess"
       @submit.stop.prevent="subscribe"
       :class="{'px-5': large, 'px-2 py-0 bottom-0': !large}"
-      class="card-body col-12 no-gutters">
+      class="card-body col-12 no-gutters justify-content-center">
       <div v-if="large" class="col-md-6 col-sm-12">
         <h3>Как увеличить продажи?</h3>
         <p>
@@ -25,6 +22,7 @@
         </p>
       </div>
 
+      <b-btn-close v-show="closeBtn" @click="$emit('hide-lead')"/>
       <div class="col-md-4 col-sm-12 mt-4 mb-4">
         <b-input-group
           :invalid-feedback="invalidEmail"
@@ -52,7 +50,11 @@
           :class="{'btn-subscribe-active': !large}"
           value="btnGo"
           variant="subscribe">
-          <b-spinner v-if="disabled" small type="grow" label="Сохраняем...">
+          <b-spinner
+            v-if="disabled"
+            small
+            type="grow"
+            label="Сохраняем...">
           </b-spinner>
           <span v-if="!disabled">{{btnGo}}</span>
         </b-button>
@@ -72,7 +74,7 @@
       console.log('FETCHED STORE', store)
       // TODO get story by slug from api
     },
-    props: ['large', 'btnGo'],
+    props: ['large', 'btnGo', 'closeBtn'],
     components: {
     },
     data () {
@@ -80,7 +82,6 @@
         // lead: this.$store.state.lead,
         errors: {},
         email: null,
-        visible: true,
         disabled: false,
         subscribeSuccess: false,
       }
@@ -148,7 +149,20 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 3rem;
+  }
+  .open .card-body {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+  }
   form {
     label {
       font-size: 1.25rem;
@@ -168,6 +182,5 @@
   }
   .card {
     box-shadow: 0 15px 40px 5px rgba(21, 24, 36, 0.12);
-    background-color: #ffffff;
   }
 </style>
