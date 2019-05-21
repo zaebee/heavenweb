@@ -2,6 +2,7 @@
 # core/models.py
 
 from django.db import models
+from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.fields import ThumbnailerField
 
@@ -26,7 +27,12 @@ class Recipe(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=120)
     content = models.CharField(max_length=400)
-    picture = ThumbnailerField(_('Main image'), max_length=200, upload_to='pictures/')
+    picture = ThumbnailerField(_('Main image'),
+            max_length=200,
+            upload_to='pictures/')
+    author = models.ForeignKey(get_user_model(),
+            related_name='posts',
+            on_delete=models.CASCADE)
 
     date_added = models.DateTimeField(_(u'Date Added'), auto_now_add=True)
     date_updated = models.DateTimeField(_(u'Date Updated'), auto_now=True)
