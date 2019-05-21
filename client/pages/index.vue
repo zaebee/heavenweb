@@ -1,18 +1,9 @@
 <template>
   <div>
-    <header class="mb-5">
-      <div class="text-box mx-3 mx-md-0">
-        <h1>Создание и продвижение сайтов</h1>
-        <p class="mt-3">Приведем клиентов для вашего бизнеса</p>
-        <nuxt-link class="btn btn-lg btn-info btn-header text-center text-md-left mt-4" to="/recipes">
-          Оставить заявку&rarr;
-        </nuxt-link>
-        <subscribe-form
-          btn-go="Хочу"
-          :large="false"
-          ></subscribe-form>
-      </div>
-    </header>
+    <header-nav
+      btn-go="Отправить"
+      :large="false"
+    />
 
     <nofear></nofear>
 
@@ -125,6 +116,7 @@
 </template>
 
 <script>
+  import HeaderNav from '~/components/HeaderNav.vue'
   import Nofear from '~/components/Nofear.vue'
   import SubscribeForm from '~/components/SubscribeForm.vue'
   import ActionBlock from '~/components/ActionBlock.vue'
@@ -141,6 +133,7 @@
       };
     },
     components: {
+      HeaderNav,
       Nofear,
       SubscribeForm,
       ActionBlock,

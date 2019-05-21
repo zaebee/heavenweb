@@ -1,16 +1,20 @@
 <template>
-  <div :class="classList">
+  <div :class="classList" v-show="visible">
     <transition>
-      <b-alert
-        dismissible
-        :show="!!subscriberEmail"
-        variant="success">Спасибо за подписку!</b-alert>
+      <div
+        class="card-body col-12 no-gutters bottom-0">
+        <b-alert
+          dismissible
+          class="bottom-0"
+          :show="!!subscribeSuccess"
+          variant="success">Спасибо за подписку!</b-alert>
+      </div>
     </transition>
     <b-form
       inline
-      v-if="!subscriberEmail"
-      @submit.stop.prevent="subscribeForm"
-      :class="{'px-5': large, 'px-0': !large}"
+      v-if="!subscribeSuccess"
+      @submit.stop.prevent="subscribe"
+      :class="{'px-5': large, 'px-2 py-0 bottom-0': !large}"
       class="card-body col-12 no-gutters">
       <div v-if="large" class="col-md-6 col-sm-12">
         <h3>Как увеличить продажи?</h3>
@@ -40,11 +44,18 @@
       </div>
 
       <div class="col-md-2 col-sm-12 text-center">
-        <b-btn
-          @click.prevent="subscribeForm"
+        <b-button
+          @click.prevent="subscribe"
+          :disabled="disabled"
           size="lg"
           class="col-sm-12 "
-          variant="subscribe">{{btnGo}}</b-btn>
+          :class="{'btn-subscribe-active': !large}"
+          value="btnGo"
+          variant="subscribe">
+          <b-spinner v-if="disabled" small type="grow" label="Сохраняем...">
+          </b-spinner>
+          <span v-if="!disabled">{{btnGo}}</span>
+        </b-button>
       </div>
     </b-form>
   </div>
@@ -54,9 +65,11 @@
   import _ from 'lodash'
   import { mapGetters } from 'vuex'
   import { mapState } from 'vuex'
+  import { mapActions } from 'vuex'
 
   export default {
     async fetch ({ store, params, error }) {
+      console.log('FETCHED STORE', store)
       // TODO get story by slug from api
     },
     props: ['large', 'btnGo'],
@@ -64,46 +77,70 @@
     },
     data () {
       return {
-        email: null,
+        // lead: this.$store.state.lead,
         errors: {},
-        subscriberEmail: null,
+        email: null,
+        visible: true,
+        disabled: false,
+        subscribeSuccess: false,
       }
     },
     computed: {
+      ...mapState([
+        'quiz',
+        'lead'
+      ]),
       classList () {
         return this.large ? 'row card' : ''
       },
       stateEmail () {
-        return this.errors.subscriber_email ? false : true
+        return this.lead.email ? false : true
       },
-      invalidEmail () {
-        if (this.errors.subscriber_email) {
-          return this.errors.subscriber_email.join('; ')
-        } else {
-          return ''
-        }
+      stateEmail () {
+        let email = this.$store // let email = this.lead.email
+        let validEmail = this.validateEmail(this.email)
+        let empty = _.isString(email) && _.isEmpty(email)
+        return (empty || !validEmail) ? false : true
       },
       validEmail () {
-        return this.errors.subscriber_email ? false : true
+        console.log('validEmail', this.lead)
+        // let errors = this.$store.state.lead.errors
+        // return errors ? false : true
+      },
+      invalidEmail () {
+        let errorMsg = ''
+        let validEmail = this.validateEmail(this.email)
+        if (!validEmail) {
+          errorMsg = 'Напишите правильный email'
+        }
+        if (_.isEmpty(this.email)) {
+          errorMsg = 'Напишите ваш email'
+        }
+        if (_.isEmpty(errorMsg)) {
+          //this.$store.commit('errors', {})
+        } else {
+          //this.$store.commit('errors', {errors: errorMsg, email: this.email})
+        }
+        return errorMsg
       },
     },
     methods: {
-      subscribeForm () {
-        this.subscriberEmail = true
-        return
-        console.log('subscribe')
-        this.$store.dispatch('SUBSCRIBE', {subscriber_email: this.email}).then(
-          response => {
-            let isValid = _.every([
-              this.errors,
-              this.invalidEmail,
-            ], _.isEmpty)
-            if (isValid) {
-              console.log('success subscribed')
-              // this.handleSubmit(evt)
-            }
-          },
-        )
+      validateEmail (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      },
+      subscribe () {
+        // TODO await this.$store.dispatch
+        let isValid = _.every([
+          this.errors,
+          this.invalidEmail,
+        ], _.isEmpty)
+        if (isValid) {
+          this.$store.dispatch('lead/save', {email: this.email})
+          this.errors = {}
+          this.subscribeSuccess = true
+          // this.handleSubmit(evt)
+        }
       }
     },
     mounted () {

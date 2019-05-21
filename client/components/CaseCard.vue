@@ -8,7 +8,7 @@
     rel="nofollow"
     tag="article"
     style="max-width: 50rem;"
-    class="mb-5 mb-md-2"
+    class="mb-5 mb-md-2 shadow-none border-0 px-0"
   >
     <p v-text="text"></p>
     <b-button @click.prevent="onSlideStart('link')" target="_blank" :href="link" variant="outline-dark" size="xs">Читать полностью</b-button>

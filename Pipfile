@@ -9,6 +9,7 @@ verify_ssl = true
 django = ">=2.1.6"
 django-rest-framework = "*"
 django-cors-headers = "*"
+easy-thumbnails = "*"
 
 [requires]
 python_version = "3.6"
