@@ -31,22 +31,6 @@
             <span>ИП Громов · ИНН 352827679495 · ОГРН 3193525000076</span>
           </li>
         </ul>
-        <ul class="list-inline d-none">
-          <li class="list-inline-item">
-            <a class="" target="_blank" rel="nofollow" href="https://vk.com/heavenweb">
-              <fa-layers class="fa-3x">
-                <fa :icon="['fab', 'vk']"/>
-              </fa-layers>
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a class="" target="_blank" rel="nofollow" href="https://fb.com/heavenweb">
-              <fa-layers class="fa-3x">
-                <fa :icon="['fab', 'facebook-f']"/>
-              </fa-layers>
-            </a>
-          </li>
-        </ul>
       </div>
     </b-row>
   </div>
