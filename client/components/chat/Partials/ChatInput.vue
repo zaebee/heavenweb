@@ -5,25 +5,43 @@
       <!-- Here are the suggestions -->
       <div v-if="!close" class="suggestions">
         <vue-scroll :ops="ops">
-          <Suggestion v-if="suggestions.text_suggestions" v-for="(suggestion, index) in suggestions.text_suggestions" :key="index" @click.native="$emit('submit', suggestion)" :title="suggestion" />
-          <Suggestion v-if="suggestions.link_suggestion" :title="suggestions.link_suggestion.destinationName" :url="suggestions.link_suggestion.uri" />
+          <Suggestion
+            v-if="suggestions.text_suggestions"
+            v-for="(suggestion, index) in suggestions.text_suggestions"
+            :key="index"
+            @click.native="$emit('submit', suggestion)"
+            :title="suggestion" />
+          <Suggestion
+            v-if="suggestions.link_suggestion"
+            :title="suggestions.link_suggestion.destinationName"
+            :url="suggestions.link_suggestion.uri" />
         </vue-scroll>
       </div>
-      <div class="flexible">
 
+      <div class="d-flex">
         <!-- Text input -->
-        <div v-if="!close" class="input-container">
-            <input :aria-label="config.i18n[lang].inputTitle" class="input" type="text" :placeholder="config.i18n[lang].inputTitle" v-model="query" @keypress.enter="submit()" />
+        <div
+          v-if="!close"
+          class="input-container">
+          <input
+            type="text"
+            class="input"
+            v-model="query"
+            :aria-label="config.i18n[lang].inputTitle"
+            :placeholder="config.i18n[lang].inputTitle"
+            @keypress.enter="submit()"
+            />
         </div>
 
         <!-- Send message button (arrow button) -->
         <div
-          :aria-label="config.i18n[lang].sendTitle"
-          :title="config.i18n[lang].sendTitle"
           class="button-container"
           v-if="!micro && query.length > 0 && !close"
+          :aria-label="config.i18n[lang].sendTitle"
+          :title="config.i18n[lang].sendTitle"
           @click="submit()">
-            <i class="material-icons" aria-hidden="true">arrow_upward</i>
+            <i class="material-icons"
+              aria-hidden="true">arrow_upward</i>
         </div>
 
         <!-- Microphone Button -->
@@ -34,193 +52,23 @@
           :class="{'mic-active': micro}"
           @click="micro = !micro"
           v-else-if="!close">
-            <i class="material-icons" aria-hidden="true">mic</i>
+            <i class="material-icons"
+              aria-hidden="true">mic</i>
         </div>
 
         <!-- Show chat Button -->
         <div
+          class="button-container show-button"
           v-if="close"
-          @click="$emit('show-chat')"
-          class="button-container show-button">
-            <i class="material-icons" aria-hidden="true">message</i>
+          @click="$emit('show-chat')">
+            <i class="material-icons"
+              aria-hidden="true">message</i>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="sass" scoped>
-.bot-container
-    max-width: 500px
-    margin-left: auto
-    padding: 0 1rem
-    position: relative
-    background: white
-    border-top: 1px solid #F1f3f4
-.bottomchat
-    position: fixed
-    bottom: 0
-    right: 0
-    width: 100%
-    transition: box-shadow .15s linear
+<style lang="sass" src="./ChatInput.sass" scoped></style>
 
-.flexible
-    display: flex
-
-.collapsed
-    width: 75px
-    .bot-container
-        border: none;
-
-.suggestions
-    overflow-x: scroll
-    overflow-y: hidden
-    white-space: nowrap
-    -webkit-overflow-scrolling: touch
-
-    &::-webkit-scrollbar
-        display: none
-
-.input-container
-    width: 100%
-    box-sizing: border-box
-    border-radius: 40px
-    flex: 1 0 0
-    background-color: #F1F3F4
-    margin-right: 6px
-    font-size: 24px
-
-.input
-    font-size: 16px
-    font-weight: 500
-    width: 100%
-    box-sizing: border-box
-    background-color: transparent
-    border: none
-    outline: none
-    padding: 8px
-    color: #202124
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-.input:focus
-    background-color: #f1f3f8
-    border-radius: 40px
-    border-color: #cfe1e4
-    outline: 0
-    box-shadow: 0 0 0 0.2rem rgba(125, 173, 183, 0.25)
-
-.button-container
-    padding: 8px
-    width: 42px
-    height: 42px
-    border-radius: 50%
-    cursor: pointer
-    background-color: #202124
-    color: white
-    text-align: center
-
-    &.show-button:hover
-        background: white
-        color: #1a1a1a
-        border: 2px solid #202124
-    &.mic-button
-        background-color: #F1F3F4
-        color: #202124
-        font-size: 24px
-
-        &.mic-active
-            background-color: #F44336
-            color: white
-</style>
-
-<script>
-import Suggestion from './../RichComponents/Suggestion.vue'
-
-export default {
-    name: 'ChatInput',
-    props: ['suggestions', 'close'],
-    components: {
-        Suggestion
-    },
-    data(){
-        return {
-          query: '',
-          micro: false,
-          recognition: null,
-          ops: {
-            vuescroll: {
-              mode: 'slide',
-              zooming: false
-            },
-            scrollPanel: {},
-            rail: {
-            },
-            bar: {
-              keepShow: true,
-              hoverStyle: true
-            }
-          }
-        }
-    },
-    computed: {
-      config(){
-        return this.$store.state.config
-      },
-      history(){
-        try {
-          localStorage.getItem('check')
-          return true
-        }
-        catch {
-          return false
-        }
-      },
-      lang(){
-        if(this.history) return localStorage.getItem('lang') || this.config.app.fallback_lang
-
-        else {
-            return this.config.app.fallback_lang
-        }
-      },
-    },
-    mounted(){
-        if(window && window.webkitSpeechRecognition || window.SpeechRecognition){
-            this.recognition = new webkitSpeechRecognition() || new SpeechRecognition()
-            this.recognition.interimResults = true
-            this.recognition.lang = this.lang
-        }
-    },
-    watch: {
-        /* This function triggers when user clicks on the microphone button */
-        micro(bool){
-            if(bool){
-                /* When value is true, start voice recognition */
-                this.recognition.start()
-                this.recognition.onresult = (event) => {
-                    for (let i = event.resultIndex; i < event.results.length; ++i){
-                        this.query = event.results[i][0].transcript // <- push results to the Text input
-                    }
-                }
-
-                this.recognition.onend = () => {
-                    this.recognition.stop()
-                    this.micro = false
-                    this.submit(this.query) // <- submit the result
-                }
-            }
-
-            else {
-                this.recognition.abort() // <- if user stops the recognition, abort it (in V1 this prevented users from starting a new recording)
-            }
-        }
-    },
-    methods: {
-        submit(){
-            if(this.query.length > 0){
-                this.$emit('submit', this.query)
-                this.query = ''
-            }
-        }
-    }
-}
-</script>
+<script src="./ChatInput.js"></script>

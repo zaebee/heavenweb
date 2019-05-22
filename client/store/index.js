@@ -7,42 +7,44 @@ import _ from 'lodash'
 const environment = process.env.NODE_ENV
 const METRO_JSON = process.env.METRO_JSON
 
+const chat = process.env.chat
+
+const inBrowser = typeof window !== 'undefined'
+
+// if in browser, use pre-fetched state injected by SSR
+// const state = (inBrowser && window.__INITIAL_STATE__) ? window.__INITIAL_STATE__.page : defaultState
+
 Vue.use(Vuex)
 
 export const state = () => ({
   counter: 0,
-  env: environment,
+  environment: environment,
   METRO_JSON: METRO_JSON,
 
   config: {
-    app: {
-        gateway: "https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co", // <- enter your gateway URL here, the function is just a helper function for my cloud integration. You don't normally need it
-        muted: false, // <- mute microphone at start
-        start_suggestions: [], // <- array of suggestions, displayed at the start screen
-        fallback_lang: 'en' // <- fallback language code, if history mode or network is unavailable
-    },
+    app: chat,
     i18n: {
-        en: {
-            welcomeTitle: "Welcome to",
-            muteTitle: "Mute Toggle",
-            inputTitle: "Type your message",
-            sendTitle: "Send",
-            microphoneTitle: "Voice Input"
-        },
-        ru: {
-            welcomeTitle: "Добро пожаловать в",
-            muteTitle: "Режим звука",
-            inputTitle: "Введите свое сообщение",
-            sendTitle: "Отправить",
-            microphoneTitle: "Голосовой ввод"
-        },
-        de: {
-            welcomeTitle: "Wilkommen bei",
-            muteTitle: "Stumm Modus",
-            inputTitle: "Schreiben Sie ihre Nachricht",
-            sendTitle: "Senden",
-            microphoneTitle: "Spracheingabe"
-        }
+      en: {
+        welcomeTitle: "Welcome to",
+        muteTitle: "Mute Toggle",
+        inputTitle: "Type your message",
+        sendTitle: "Send",
+        microphoneTitle: "Voice Input"
+      },
+      ru: {
+        welcomeTitle: "Добро пожаловать в",
+        muteTitle: "Режим звука",
+        inputTitle: "Введите свое сообщение",
+        sendTitle: "Отправить",
+        microphoneTitle: "Голосовой ввод"
+      },
+      de: {
+        welcomeTitle: "Wilkommen bei",
+        muteTitle: "Stumm Modus",
+        inputTitle: "Schreiben Sie ihre Nachricht",
+        sendTitle: "Senden",
+        microphoneTitle: "Spracheingabe"
+      }
     }
   }
 })

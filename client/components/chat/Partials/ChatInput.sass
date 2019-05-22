@@ -1,0 +1,77 @@
+.bottomchat
+  right: 0
+  bottom: 0
+  width: 100%
+  position: fixed
+  transition: height, width, box-shadow, .35s linear
+
+  &.collapsed
+    width: 4rem
+    height: 4rem
+    &:hover
+      width: 4.2rem
+      height: 4.2rem
+    .bot-container
+      border: none
+
+  .bot-container
+    padding-top: 3rem
+    border-top: 1px solid #f1f3f4
+
+    .suggestions
+      overflow-x: scroll
+      overflow-y: hidden
+      white-space: nowrap
+      -webkit-overflow-scrolling: touch
+      &::-webkit-scrollbar
+        display: none
+
+    .input-container
+      width: 100%
+      box-sizing: border-box
+      border-radius: 40px
+      flex: 1 0 0
+      background-color: #f1f3f4
+      margin-right: 0.333rem
+      font-size: 1.5rem
+
+      .input
+        font-size: 1rem
+        font-weight: 500
+        width: 100%
+        box-sizing: border-box
+        background-color: transparent
+        border: none
+        outline: none
+        padding: 0.5rem
+        color: #202124
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
+        &:focus
+          background-color: #f1f3f8
+          border-radius: 2.5rem
+          border-color: #cfe1e4
+          outline: 0
+          box-shadow: 0 0 0 0.2rem rgba(125, 173, 183, 0.25)
+
+    .button-container
+      color: white
+      padding: 0.5rem
+      width: 2.5rem
+      height: 2.5rem
+      border-radius: 50%
+      cursor: pointer
+      background-color: #202124
+      text-align: center
+
+      &.show-button:hover
+        background: white
+        color: #1a1a1a
+        border: 2px solid #202124
+      &.mic-button
+        color: #202124
+        font-size: 1.5rem
+        background-color: #f1f3f4
+
+        &.mic-active
+          color: white
+          background-color: #f44336

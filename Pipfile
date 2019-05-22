@@ -11,6 +11,8 @@ django-rest-framework = "*"
 django-cors-headers = "*"
 easy-thumbnails = "*"
 djangorestframework-jwt = "*"
+dialogflow = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.6"

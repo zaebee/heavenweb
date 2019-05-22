@@ -1,13 +1,19 @@
 <template>
   <header class="app-head">
     <b-btn-close
-      class="float-left"
+      class="app-close float-left"
       @click="$emit('close-chat')"/>
 
     <div class="app-info">
-      <div class="app-name">{{app.displayName}}</div>
+      <div class="app-name">
+        {{app.displayName}}
+      </div>
     </div>
-    <img :alt="app.displayName" class="app-icon" :src="app.avatarUri" v-if="app.avatarUri" />
+    <img
+      class="app-icon"
+      :alt="app.displayName"
+      :src="app.avatarUri"
+      v-if="app.avatarUri" />
   </header>
 </template>
 
@@ -21,7 +27,7 @@
   text-align: right;
   border-bottom: 1px solid #F1f3f4
 
-  .close
+  .app-close
     font-size: 32px
   .app-icon
     border-radius: 50%
