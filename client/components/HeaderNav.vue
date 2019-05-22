@@ -4,50 +4,6 @@
     :class="{'header-with-promo': showPromo, 'header-small': !large}">
      <!-- Image and text -->
 
-    <b-navbar variant="" type="">
-      <b-navbar-brand href="/">
-        <b-img width="36" src="/images/heaven.svg" class="d-inline-block align-top" alt="heavenweb - разработка и
-          сопровождение чат ботов и рекламных компаний"/>
-          Heaven.web &mdash; дружим с ботами и чатами
-      </b-navbar-brand>
-      <b-collapse id="nav-text-collapse" is-nav>
-        <div class="w-100">
-          <b-navbar-nav align="right" class="mt-1">
-            <b-nav-item active>
-              Команда
-            </b-nav-item>
-            <b-nav-item>
-              Проекты
-            </b-nav-item>
-            <b-nav-item>
-              Продвижение
-            </b-nav-item>
-            <b-nav-item>
-              Разработка
-            </b-nav-item>
-            <b-nav-item>
-              Контакты
-            </b-nav-item>
-          </b-navbar-nav>
-
-          <b-navbar-nav align="right" class="my-3">
-            <b-nav-item
-              href="tel:+79535105359"
-              class="font-weight-bolder">
-             +7 953 510 53 59
-            </b-nav-item>
-            <b-btn
-              variant="subscribe"
-              size="sm"
-              class="my-2 my-sm-0"
-              @click="$emit('show-lead')">
-              Обратный звонок
-            </b-btn>
-          </b-navbar-nav>
-        </div>
-      </b-collapse>
-    </b-navbar>
-
     <promo-block
       :h1="h1"
       :slogan="slogan"

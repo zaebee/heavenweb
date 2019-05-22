@@ -1,5 +1,9 @@
 <template>
   <div>
+    <navbar-top
+      @show-lead="showLeadForm"
+      @hide-lead="hideLeadForm"
+    />
     <header-nav
       btn-go="Отправить"
       :large="false"
@@ -119,6 +123,7 @@
 </template>
 
 <script>
+  import NavbarTop from '~/components/NavbarTop.vue'
   import HeaderNav from '~/components/HeaderNav.vue'
   import Nofear from '~/components/Nofear.vue'
   import SubscribeForm from '~/components/SubscribeForm.vue'
@@ -141,6 +146,7 @@
       }
     },
     components: {
+      NavbarTop,
       HeaderNav,
       Nofear,
       SubscribeForm,

@@ -13,6 +13,8 @@ easy-thumbnails = "*"
 djangorestframework-jwt = "*"
 dialogflow = "*"
 ipython = "*"
+django-rest-elasticsearch = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.6"

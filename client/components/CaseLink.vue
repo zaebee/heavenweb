@@ -6,10 +6,12 @@
       <a class="offer" href="/images/kp_seo.pdf" target="_blank"><span>Коммерческое предложение по продвижению сайтов</span></a>
     </b-col>
     <b-col md="4" sm="12">
+      <!--
       <b-btn
         size="lg"
         href="/portfolio"
         variant="outline-lite">Посмотреть больше работ</b-btn>
+      -->
     </b-col>
   </b-row>
 </template>
@@ -21,7 +23,6 @@
     },
     data () {
       return {
-        email: null,
       }
     },
     computed: {

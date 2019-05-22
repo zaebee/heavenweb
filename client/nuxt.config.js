@@ -52,6 +52,7 @@ module.exports = {
   */
   plugins: [
     { src: '~plugins/scroll', ssr: true },
+    // { src: '~plugins/apiai', ssr: false},
   ],
 
   /*
@@ -163,7 +164,6 @@ module.exports = {
       }
     ]
   },
-
   /*
   ** Build configuration
   */
@@ -174,7 +174,6 @@ module.exports = {
     extractCSS: true,
     optimizeCSS: true,
     extend(config, ctx) {
-
     }
   }
 }
