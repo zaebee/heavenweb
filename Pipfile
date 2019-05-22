@@ -12,10 +12,12 @@ django-cors-headers = "*"
 easy-thumbnails = "*"
 djangorestframework-jwt = "*"
 dialogflow = "*"
-ipython = "*"
 django-rest-elasticsearch = "*"
 django-environ = "*"
 google-api-core = "*"
+pandas = "*"
+numpy = "*"
+pip = "*"
 
 [requires]
 python_version = "3.6"
