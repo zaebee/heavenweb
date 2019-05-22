@@ -53,7 +53,6 @@ module.exports = {
   */
   plugins: [
     { src: '~plugins/scroll', ssr: true },
-    // { src: '~plugins/apiai', ssr: false},
   ],
 
   /*

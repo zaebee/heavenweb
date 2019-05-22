@@ -15,6 +15,7 @@ dialogflow = "*"
 ipython = "*"
 django-rest-elasticsearch = "*"
 django-environ = "*"
+google-api-core = "*"
 
 [requires]
 python_version = "3.6"
