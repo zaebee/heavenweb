@@ -47,15 +47,15 @@ export default {
   },
   mounted() {
     // if history is enabled, the messages
-    // are retrieved from localstorage
-    if (this.history && localstorage.getitem('message_history') !== null) {
-      this.messages = json.parse(localstorage.getitem('message_history'))
+    // are retrieved from localStorage
+    if (this.history && localStorage.getItem('message_history') !== null) {
+      this.messages = JSON.parse(localStorage.getItem('message_history'))
     }
 
     // session should be persistent (in case
     // of page reload, the context should stay)
-    if (this.history && localstorage.getitem('session') !== null) {
-      this.session = localstorage.getitem('session')
+    if (this.history && localStorage.getItem('session') !== null) {
+      this.session = localStorage.getItem('session')
     } else {
       this.session = uuidv1()
       if (this.history) {

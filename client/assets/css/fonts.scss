@@ -1,5 +1,5 @@
 $blue: #7dadb7;
-$font-family-base: Lato, sans-serif;
+$font-family-base: Rubik, sans-serif;
 
 $theme-colors: (
   "primary": $blue,
@@ -12,16 +12,20 @@ $custom-control-indicator-checked-box-shadow: #f98a6c;
 $custom-control-indicator-focus-box-shadow: #f98a6c;
 $custom-control-indicator-box-shadow: #f98a6c;
 
+$navbar-light-color: $blue;
+$navbar-light-hover-color: darken($blue, 15);
+$navbar-light-brand-color: $blue;
+$navbar-light-brand-hover-color: darken($blue, 15);
 
 // $form-feedback-valid-color: $blue;
 
 $card-columns-count: 2;
 
 html {
-  font-family: Lato, sans-serif;
+  font-family: Rubik, sans-serif;
 }
 body {
-  font-family: Lato, sans-serif;
+  font-family: Rubik, sans-serif;
   font-weight: 400;
   text-align: left;
   margin: 0;
