@@ -1,9 +1,9 @@
 <template>
-  <div class="bottomchat">
-    <div class="bot-container py-3">
+  <div class="bottomchat" :class="{'collapsed': close}">
+    <div class="bot-container py-3 chat-animate">
 
       <!-- Here are the suggestions -->
-      <div class="suggestions">
+      <div v-if="!close" class="suggestions">
         <vue-scroll :ops="ops">
           <Suggestion v-if="suggestions.text_suggestions" v-for="(suggestion, index) in suggestions.text_suggestions" :key="index" @click.native="$emit('submit', suggestion)" :title="suggestion" />
           <Suggestion v-if="suggestions.link_suggestion" :title="suggestions.link_suggestion.destinationName" :url="suggestions.link_suggestion.uri" />
@@ -12,18 +12,37 @@
       <div class="flexible">
 
         <!-- Text input -->
-        <div class="input-container">
+        <div v-if="!close" class="input-container">
             <input :aria-label="config.i18n[lang].inputTitle" class="input" type="text" :placeholder="config.i18n[lang].inputTitle" v-model="query" @keypress.enter="submit()" />
         </div>
 
         <!-- Send message button (arrow button) -->
-        <div :aria-label="config.i18n[lang].sendTitle" :title="config.i18n[lang].sendTitle" class="button-container" v-if="!micro && query.length > 0" @click="submit()">
+        <div
+          :aria-label="config.i18n[lang].sendTitle"
+          :title="config.i18n[lang].sendTitle"
+          class="button-container"
+          v-if="!micro && query.length > 0 && !close"
+          @click="submit()">
             <i class="material-icons" aria-hidden="true">arrow_upward</i>
         </div>
 
         <!-- Microphone Button -->
-        <div :aria-label="config.i18n[lang].microphoneTitle" :title="config.i18n[lang].microphoneTitle" class="button-container mic_button" :class="{'mic_active': micro}" @click="micro = !micro" v-else>
+        <div
+          :aria-label="config.i18n[lang].microphoneTitle"
+          :title="config.i18n[lang].microphoneTitle"
+          class="button-container mic-button"
+          :class="{'mic-active': micro}"
+          @click="micro = !micro"
+          v-else-if="!close">
             <i class="material-icons" aria-hidden="true">mic</i>
+        </div>
+
+        <!-- Show chat Button -->
+        <div
+          v-if="close"
+          @click="$emit('show-chat')"
+          class="button-container show-button">
+            <i class="material-icons" aria-hidden="true">message</i>
         </div>
       </div>
     </div>
@@ -41,12 +60,17 @@
 .bottomchat
     position: fixed
     bottom: 0
-    left: 0
+    right: 0
     width: 100%
     transition: box-shadow .15s linear
 
 .flexible
     display: flex
+
+.collapsed
+    width: 75px
+    .bot-container
+        border: none;
 
 .suggestions
     overflow-x: scroll
@@ -63,6 +87,8 @@
     border-radius: 40px
     flex: 1 0 0
     background-color: #F1F3F4
+    margin-right: 6px
+    font-size: 24px
 
 .input
     font-size: 16px
@@ -87,18 +113,22 @@
     padding: 8px
     width: 42px
     height: 42px
-    margin-left: 6px
     border-radius: 50%
     cursor: pointer
     background-color: #202124
     color: white
+    text-align: center
 
-    &.mic_button
+    &.show-button:hover
+        background: white
+        color: #1a1a1a
+        border: 2px solid #202124
+    &.mic-button
         background-color: #F1F3F4
         color: #202124
         font-size: 24px
 
-        &.mic_active
+        &.mic-active
             background-color: #F44336
             color: white
 </style>
@@ -108,7 +138,7 @@ import Suggestion from './../RichComponents/Suggestion.vue'
 
 export default {
     name: 'ChatInput',
-    props: ['suggestions'],
+    props: ['suggestions', 'close'],
     components: {
         Suggestion
     },

@@ -93,6 +93,27 @@ export default {
         toLang(code){
             return langs.where('1', code).local
         }
+    },
+    computed: {
+      config(){
+        return this.$store.state.config
+      },
+      history(){
+        try {
+          localStorage.getItem('check')
+          return true
+        }
+        catch {
+          return false
+        }
+      },
+      lang(){
+        if(this.history) return localStorage.getItem('lang') || this.config.app.fallback_lang
+
+        else {
+            return this.config.app.fallback_lang
+        }
+      },
     }
 }
 </script>

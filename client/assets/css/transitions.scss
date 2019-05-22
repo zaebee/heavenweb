@@ -12,6 +12,13 @@
   opacity: 0;
 }
 
+.chat-animate {
+  transition: width .3s ease;
+  visibility: visible;
+  animation-delay: 0.4s;
+  animation-name: fadeInRight;
+}
+
 .hovereffect {
   width: 100%;
   height: 100%;
