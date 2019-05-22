@@ -4,13 +4,13 @@
         <!-- Agent Icon -->
         <img :alt="app.displayName" class="app-icon" :src="app.avatarUri" v-if="app.avatarUri" />
         <img :alt="app.displayName" class="app-icon" src="https://console.dialogflow.com/api-client/assets/img/logo-short.png" v-else />
-        
+
         <!-- Agent Title -->
         <h1 class="app-title">{{config.i18n[sel_lang].welcomeTitle}} {{app.displayName}}</h1>
 
         <!-- Agent Description -->
         <p class="app-description">{{app.description}}</p>
-        
+
         <!-- Language picker, when your Agent supports more than one Language -->
         <div v-if="app && app.supportedLanguageCodes !== undefined && app.supportedLanguageCodes.length > 0">
             <span @click="sel_lang = app.defaultLanguageCode" class="language-picker" :class="{'picked': sel_lang == app.defaultLanguageCode}">

@@ -129,8 +129,6 @@
   import SlideBlock from '~/components/SlideBlock.vue'
   import FooterNav from '~/components/FooterNav.vue'
 
-  import Chat from '~/components/chat/App.vue'
-
   export default {
     head() {
       return {
@@ -152,7 +150,6 @@
       CaseLink,
       SlideBlock,
       FooterNav,
-      Chat
     },
     methods: {
       showLeadForm (source) {

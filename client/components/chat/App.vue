@@ -1,71 +1,104 @@
 <template>
-    <main id="app">
+  <main id="app" class="">
 
-        <!-- TopHead is the header with the information about the app -->
-        <TopHead v-if="app && messages.length > 0" :app="app"></TopHead>
-        <section class="container chat-container">
+    <vue-scroll :ops="ops">
+      <section class="bot-container chat-container">
 
-            <!-- Welcome component is for onboarding experience and language picker -->
-            <Welcome v-if="messages.length == 0" :app="app"></Welcome>
+        <!-- Messages Table -->
+        <section class="messages">
+          <table v-for="m in messages" class="message">
+            <tr>
+              <!-- My message -->
+              <td>
+                <Bubble
+                  :text="m.queryResult.queryText"
+                  from="me"
+                />
+              </td>
+            </tr>
 
-            <!-- Messages Table -->
-            <section class="messages" v-else>
-                <table v-for="m in messages" class="message">
-                  <tr>
-                    <!-- My message -->
-                    <td><Bubble :text="m.queryResult.queryText" from="me" /></td>
-                  </tr>
+            <!-- Component iterator (Dialogflow Gateway Feature) -->
+            <tr v-for="component in m.queryResult.fulfillmentMessages">
+                <td>
+                  <!-- Default / Webhook bubble -->
+                  <Bubble
+                    v-if="component.name == 'DEFAULT'"
+                    :text="component.content"
+                  />
 
-                  <!-- Component iterator (Dialogflow Gateway Feature) -->
-                  <tr v-for="component in m.queryResult.fulfillmentMessages">
-                      <td>
-                        <!-- Default / Webhook bubble -->
-                        <Bubble :text="component.content" v-if="component.name == 'DEFAULT'" />
+                  <!-- Simple Response -->
+                  <Bubble
+                    v-if="component.name == 'SIMPLE_RESPONSE'"
+                    :text="component.content.displayText || component.content.textToSpeech"
+                    />
 
-                        <!-- Simple Response -->
-                        <Bubble :text="component.content.displayText || component.content.textToSpeech" v-if="component.name == 'SIMPLE_RESPONSE'" />
+                  <!-- Card -->
+                  <Card
+                    v-if="component.name == 'CARD'"
+                    :title="component.content.title"
+                    :subtitle="component.content.subtitle"
+                    :image="component.content.image"
+                    :text="component.content.formattedText"
+                    :button="component.content.buttons[0]"
+                    />
 
-                        <!-- Card -->
-                        <Card :title="component.content.title" :subtitle="component.content.subtitle" :image="component.content.image" :text="component.content.formattedText" :button="component.content.buttons[0]" v-if="component.name == 'CARD'" />
+                  <!-- Carousel layout and cards -->
+                  <div
+                    v-if="component.name == 'CAROUSEL_CARD'"
+                    class="carousel"
+                    >
+                      <div class="carousel-panel">
+                      <vue-scroll :ops="carouselOps">
+                        <Card
+                        v-for="card in component.content"
+                        @click.native="send(card.info.key)"
+                        :key="card.info.key"
+                        :title="card.title"
+                        :image="card.image"
+                        :subtitle="card.subtitle"
+                        :text="card.description"
+                        />
+                      </vue-scroll>
+                      </div>
+                  </div>
 
-                        <!-- Carousel layout and cards -->
-                        <div class="carousel" v-if="component.name == 'CAROUSEL_CARD'">
-                            <Card v-for="card in component.content" @click.native="send(card.info.key)" :key="card.info.key" :title="card.title" :image="card.image" :subtitle="card.subtitle" :text="card.description" />
-                        </div>
+                  <!-- List -->
+                  <List
+                    v-if="component.name == 'LIST'"
+                    @select="send"
+                    :items="component.content.items"
+                    :title="component.content.title"
+                    />
 
-                        <!-- List -->
-                        <List @select="send" :items="component.content.items" :title="component.content.title" v-if="component.name == 'LIST'" />
-
-                        <!-- Webhook Image -->
-                        <Picture v-if="component.name == 'IMAGE'" :image="component.content" />
-                    </td>
-                  </tr>
-                </table>
-                <table class="message" v-if="loading">
-                  <tr>
-                    <!-- My message (Loading) -->
-                    <td><Bubble text="..." from="me" /></td>
-                  </tr>
-                  <tr>
-                    <!-- Default / Webhook bubble (Loading) -->
-                    <td><Bubble text="..." /></td>
-                  </tr>
-                </table>
-            </section>
+                  <!-- Webhook Image -->
+                  <Picture
+                    v-if="component.name == 'IMAGE'"
+                    :image="component.content"
+                    />
+              </td>
+            </tr>
+          </table>
+          <table class="message" v-if="loading">
+            <tr>
+              <!-- My message (Loading) -->
+              <td><Bubble text="..." from="me" /></td>
+            </tr>
+            <tr>
+              <!-- Default / Webhook bubble (Loading) -->
+              <td><Bubble text="..." /></td>
+            </tr>
+          </table>
         </section>
+      </section>
 
-        <!-- #bottom is the anchor, we need, when new messages arrive, to scroll down -->
-        <div id="bottom"></div>
+      <!-- #bottom is the anchor, we need, when new messages arrive, to scroll down -->
+      <div id="bottom"></div>
+    </vue-scroll>
 
-        <!-- ChatInput is made for submitting queres and displaying suggestions -->
-        <ChatInput @submit="send" :suggestions="suggestions"></ChatInput>
+    <!-- ChatInput is made for submitting queres and displaying suggestions -->
+    <ChatInput @submit="send" :suggestions="suggestions"></ChatInput>
 
-        <!-- Audio toggle (on the top right corner), used to toggle the audio output, default mode is defined in the settings -->
-        <div :aria-label="config.i18n[lang()].muteTitle" :title="config.i18n[lang()].muteTitle" class="audio-toggle" @click="muted = !muted">
-            <i aria-hidden="true" class="material-icons" v-if="!muted">volume_up</i>
-            <i aria-hidden="true" class="material-icons" v-else>volume_off</i>
-        </div>
-    </main>
+  </main>
 </template>
 
 <style lang="sass">
@@ -94,9 +127,21 @@
 </style>
 
 <style lang="sass" scoped>
-.chat-container
-    padding-top: 60px
-    padding-bottom: 125px
+main
+    top: 0
+    right: 0
+    height: 100%
+    position: fixed
+    padding-bottom: 100px
+    background: white
+    width: 500px
+    box-shadow: 1px 2px 5px 2px #bababa
+
+.bot-container
+    max-width: 500px
+    margin-left: auto
+    padding: 0 1rem
+    position: relative
 
 .message
     width: 100%
@@ -115,18 +160,25 @@
     cursor: pointer
     color: #202124
 
-.carousel
+.carousel-panel
     overflow-x: scroll
     overflow-y: hidden
-    white-space: nowrap
+    scrollbar-width: none
     -webkit-overflow-scrolling: touch
+    white-space: nowrap
     padding-bottom: 20px
     padding-left: 10px
+
+.carousel-panel::-webkit-scrollbar
+    display: none
+    width: 0 !important
+
+.carousel-panel:active
+    pointer-events: none
 </style>
 
 <script>
-  import Welcome from './Welcome/Welcome.vue'
-  import TopHead from './Partials/TopHead.vue'
+
   import ChatInput from './Partials/ChatInput.vue'
 
   import Bubble from './RichComponents/Bubble.vue'
@@ -137,44 +189,62 @@
   import * as uuidv1 from 'uuid/v1'
 
   export default {
-    name: 'app',
+    name: 'Chat',
     components: {
-        Welcome,
-        TopHead,
         ChatInput,
         Bubble,
         Card,
         List,
-        Picture
+        Picture,
     },
     data(){
         return {
-            app: null,
-            messages: [],
-            language: '',
-            session: '',
-            muted: this.config.app.muted,
-            loading: false
+          app: null,
+          messages: [],
+          language: '',
+          session: '',
+          loading: false,
+          ops: {
+            vuescroll: {},
+            scrollPanel: {},
+            rail: {},
+            bar: {
+              background: '#c1c1c1',
+            }
+          },
+          carouselOps: {
+            vuescroll: {
+              mode: 'slide',
+              zooming: false
+            },
+            scrollPanel: {},
+            rail: {
+            },
+            bar: {
+              keepShow: true,
+              hoverStyle: true
+            }
+          }
         }
     },
-    created(){
+    mounted(){
         /* If history is enabled, the messages are retrieved from localStorage */
-        if(this.history() && localStorage.getItem('message_history') !== null){
+        if(this.history && localStorage.getItem('message_history') !== null){
             this.messages = JSON.parse(localStorage.getItem('message_history'))
         }
 
         /* Session should be persistent (in case of page reload, the context should stay) */
-        if(this.history() && localStorage.getItem('session') !== null){
+        if(this.history && localStorage.getItem('session') !== null){
             this.session = localStorage.getItem('session')
         }
 
         else {
             this.session = uuidv1()
-            if(this.history()) localStorage.setItem('session', this.session)
+            if(this.history) localStorage.setItem('session', this.session)
         }
 
         /* Cache Agent (this will save bandwith) */
-        if(this.history() && localStorage.getItem('agent') !== null){
+        if(this.history && localStorage.getItem('agent') !== null){
             this.app = JSON.parse(localStorage.getItem('agent'))
         }
 
@@ -185,12 +255,34 @@
             })
             .then(agent => {
                 this.app = agent
-                if(this.history()) localStorage.setItem('agent', JSON.stringify(agent))
+                if(this.history) localStorage.setItem('agent', JSON.stringify(agent))
             })
         }
     },
     computed: {
         /* The code below is used to extract suggestions from last message, to display it on ChatInput */
+        config(){
+          return this.$store.state.config
+        },
+        muted(){
+          return this.config.app.muted
+        },
+        history(){
+          try {
+            localStorage.getItem('check')
+            return true
+          }
+          catch {
+            return false
+          }
+        },
+        lang(){
+          if(this.history) return localStorage.getItem('lang') || this.config.app.fallback_lang
+
+          else {
+              return this.config.app.fallback_lang
+          }
+        },
         suggestions(){
             if(this.messages.length > 0){
                 let last_message = this.messages[this.messages.length - 1].queryResult.fulfillmentMessages
@@ -214,7 +306,7 @@
     watch: {
         /* This function is triggered, when new messages arrive */
         messages(messages){
-            if(this.history()) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
+            if(this.history) localStorage.setItem('message_history', JSON.stringify(messages)) // <- Save history if the feature is enabled
         },
         /* This function is triggered, when request is started or finished */
         loading(){
@@ -225,26 +317,6 @@
                 })
             }, 2) // <- wait for render (timeout) and then smoothly scroll #app down to #bottom selector, used as anchor
         },
-        /* You don't need the function below. It's only for my cloud, to manage the SEO */
-        app(agent){
-            if(window.location.host.includes("cloud.ushakov.co")){
-                document.querySelector("title").innerText = agent.displayName
-                document.querySelector("meta[name=description]").content = agent.description
-                document.querySelector("link[rel=canonical]").href = location.href
-                document.querySelector("meta[name=application-name]").content = agent.displayName
-                document.querySelector("link[rel=icon]").href = agent.avatarUri
-                document.querySelector("link[rel=apple-touch-icon]").href = agent.avatarUri
-                document.querySelector("meta[name=msapplication-TileImage]").content = agent.avatarUri
-                document.querySelector("meta[name=apple-mobile-web-app-title]").content = agent.displayName
-                document.querySelector("meta[property=og\\:title]").content = agent.displayName
-                document.querySelector("meta[property=og\\:image]").content = agent.avatarUri
-                document.querySelector("meta[property=og\\:description]").content = agent.description
-                document.querySelector("meta[property=og\\:url]").content = location.href
-                document.querySelector("meta[name=twitter\\:title]").content = agent.displayName
-                document.querySelector("meta[name=twitter\\:image]").content = agent.avatarUri
-                document.querySelector("meta[name=twitter\\:description]").content = agent.description
-            }
-        }
     },
     methods: {
         send(q){
@@ -252,10 +324,10 @@
                 "queryInput": {
                     "text": {
                         "text": q,
-                        "languageCode": this.lang()
+                        "languageCode": this.lang
                     }
                 }
-            } // <- this is how a Dialogflow request look like
+            } // this is how a Dialogflow request look like
 
             this.loading = true
 
@@ -284,7 +356,7 @@
                 speech.voiceURI = 'native' // <- change this, to get a different voice
 
                 /* This "hack" is used to format our lang format, to some other lang format (example: en -> en_EN). Mainly for Safari, Firefox and Edge */
-                speech.lang = this.lang() + '-' + this.lang().toUpperCase()
+                speech.lang = this.lang + '-' + this.lang.toUpperCase()
 
                 if(!this.muted) window.speechSynthesis.speak(speech) // <- if app is not muted, speak out the speech
             }

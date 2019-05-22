@@ -18,6 +18,9 @@
     <b-container>
       <footer-nav/>
     </b-container>
+
+    <chat/>
+
   </div>
 </template>
 
@@ -31,6 +34,7 @@
   import CaseLink from '~/components/CaseLink.vue'
   import SlideBlock from '~/components/SlideBlock.vue'
   import FooterNav from '~/components/FooterNav.vue'
+  import Chat from '~/components/chat/App.vue'
 
   export default {
     head() {
@@ -47,7 +51,8 @@
       CaseCard,
       CaseLink,
       SlideBlock,
-      FooterNav
+      FooterNav,
+      Chat,
     },
     data () {
       return {
