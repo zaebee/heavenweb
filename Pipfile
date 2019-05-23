@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = ">=2.1.6"
+django = "*"
 django-rest-framework = "*"
 django-cors-headers = "*"
 easy-thumbnails = "*"
@@ -17,7 +17,6 @@ django-environ = "*"
 google-api-core = "*"
 pandas = "*"
 numpy = "*"
-pip = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

@@ -4,24 +4,30 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
+
+from django.contrib.postgres.fields import JSONField
 from easy_thumbnails.fields import ThumbnailerField
 
 
-class Recipe(models.Model):
+class DialogFlow(models.Model):
     DIFFICULTY_LEVELS = (
         ('Easy', 'Easy'),
         ('Medium', 'Medium'),
         ('Hard', 'Hard'),
     )
     name = models.CharField(max_length=120)
-    ingredients = models.CharField(max_length=400)
-    picture = models.FileField()
+    session_id = models.CharField(max_length=120)
+    picture = models.FileField(blank=True, null=True)
+
+    context = models.TextField()
+    query_result = JSONField(blank=True, null=True)
     difficulty = models.CharField(choices=DIFFICULTY_LEVELS, max_length=10)
-    prep_time = models.PositiveIntegerField()
-    prep_guide = models.TextField()
+
+    created_at = models.DateTimeField(_('Added at'), auto_now_add=True)
+    updateed_at = models.DateTimeField(_('Updated at'), auto_now=True)
 
     def __str__(self):
-        return "Recipe for {}".format(self.name)
+        return "Dialog for {}".format(self.session)
 
 
 class Post(models.Model):
