@@ -45,3 +45,19 @@ class Post(models.Model):
 
     def __str__(self):
         return "Post {}".format(self.title)
+
+
+class Comment(models.Model):
+    text = models.CharField(max_length=120)
+    author = models.ForeignKey(get_user_model(),
+            related_name='comments',
+            on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,
+            related_name='comments',
+            on_delete=models.CASCADE)
+
+    date_added = models.DateTimeField(_(u'Date Added'), auto_now_add=True)
+    date_updated = models.DateTimeField(_(u'Date Updated'), auto_now=True)
+
+    def __str__(self):
+        return "Comment {}".format(self.text)

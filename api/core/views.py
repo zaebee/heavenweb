@@ -7,18 +7,29 @@ from rest_framework import viewsets
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import AllowAny
 
-from .serializers import UserSerializer, DialogSerializer
-from .models import Post, DialogFlow
-
-
-class CreateUserView(CreateModelMixin, viewsets.GenericViewSet):
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializer
+from .serializers import DialogSerializer, PostSerializer, CommentSerializer
+from .models import Comment, Post, DialogFlow
 
 
 class DialogsViewSet(viewsets.ModelViewSet):
 
-    permission_classes = (AllowAny,)
+    # permission_classes = (AllowAny,)
 
     serializer_class = DialogSerializer
     queryset = DialogFlow.objects.all()
+
+
+class PostsViewSet(viewsets.ModelViewSet):
+
+    # permission_classes = (AllowAny,)
+
+    serializer_class = PostSerializer
+    queryset = Post.objects.all()
+
+
+class CommentsViewSet(viewsets.ModelViewSet):
+
+    # permission_classes = (AllowAny,)
+
+    serializer_class = CommentSerializer
+    queryset = Comment.objects.all()

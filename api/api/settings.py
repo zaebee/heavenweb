@@ -156,4 +156,9 @@ REST_FRAMEWORK = {
     ),
 }
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+JWT_AUTH = {
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
+
 from . settings_local import *

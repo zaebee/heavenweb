@@ -3,12 +3,13 @@ from django.urls import path, include
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework.routers import DefaultRouter
 
-from .views import CreateUserView, DialogsViewSet
+from .views import DialogsViewSet, PostsViewSet, CommentsViewSet
 
 
 router = DefaultRouter()
 router.register(r'dialogs', DialogsViewSet)
-router.register(r'users', CreateUserView)
+router.register(r'posts', PostsViewSet)
+router.register(r'comments', CommentsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
@@ -16,7 +17,8 @@ urlpatterns = [
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
 
-    path('dialogs/', DialogsViewSet)
+    # path('dialogs/', DialogsViewSet),
+    # path('posts/', PostsViewSet)
 ]
 
 'сколько стоит сайт?'
