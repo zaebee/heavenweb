@@ -62,17 +62,18 @@ module.exports = {
   modules: [,
     // '@nuxtjs/dotenv',
     'bootstrap-vue/nuxt',
+    '@nuxtjs/auth',
     '@nuxtjs/axios',
     '@nuxtjs/sitemap',
     '@nuxtjs/redirect-module',
     // [
     //   '@nuxtjs/google-tag-manager', {
-    //     id: 'GTM-W7SD7X3'
+    //     id: ''
     //   }
     // ],
     [
       '@nuxtjs/yandex-metrika', {
-        id: '53731057',
+        id: process.env.YA_METRIKA || '53731057',
         webvisor: true,
         clickmap: true,
         // useCDN:false,
@@ -89,11 +90,11 @@ module.exports = {
   env: {
     environment: process.env.NODE_ENV || 'development',
     dialogflowApiKey: process.env.DIALOGFLOW_API_KEY || '02941f64654840a98378d7f0cfc33979',
-    baseURL: process.env.API_URL || 'http://localhost:8000/api',
+    baseURL: process.env.API_URL || '/api',
     filestackApiKey: process.env.FILESTACK_API_KEY || 'A3lXl09sRSejY4e0pOOSQz',
     facebookAppId: process.env.FACEBOOK_APP_ID || '318731445375934',
     yandexMapsKey: process.env.YANDEX_MAPS_KEY || '28a17595-ef93-4576-bd46-42eee945d1cb',
-    METRO_JSON: process.env.METRO_JSON || 'http://localhost:8000/static/metro.json',
+    METRO_JSON: process.env.METRO_JSON || '/static/metro.json',
 
     chat: {
       // enter your gateway URL here, the function is just a helper
@@ -109,18 +110,10 @@ module.exports = {
   },
   axios: {
     timeout: 30000,
-    baseURL: process.env.API_URL || 'http://localhost:8000/api',
+    baseURL: process.env.API_URL || '/api',
     headers: {'X-Requested-With': 'XMLHttpRequest'},
     xsrfCookieName: 'csrf-token',
     xsrfHeaderName: 'X-CSRFToken'
-  },
-  sentry: {
-    dsn: process.env.FRONTEND_SENTRY_DSN,
-    release: process.env.GIT_REV || null,
-    environment: process.env.NODE_ENV || 'development',
-  },
-  markdownit: {
-    injected: true
   },
   auth: {
     // middleware: false,
@@ -131,6 +124,13 @@ module.exports = {
       home: '/profile'
     },
     strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/rest-auth/login/', method: 'post', propertyName: 'data.token' },
+          user: { url: 'rest-auth/user/', method: 'get', propertyName: 'data' },
+          logout: false
+        }
+      },
       facebook: {
         client_id: process.env.FACEBOOK_APP_ID || '318731445375934',
         userinfo_endpoint: 'https://graph.facebook.com/v3.1/me?fields=about,short_name,first_name,last_name,name,picture{url},email',
@@ -138,12 +138,15 @@ module.exports = {
         scope: ['public_profile', 'email'],
         // redirect_uri: `${process.env.BASE_URL || 'http://localhost:3000'}/callback`,
       },
-      local: {
-        endpoints: {
-          login: { propertyName: 'token' }
-        }
-      },
-    },
+    }
+  },
+  sentry: {
+    dsn: process.env.FRONTEND_SENTRY_DSN,
+    release: process.env.GIT_REV || null,
+    environment: process.env.NODE_ENV || 'development',
+  },
+  markdownit: {
+    injected: true
   },
   serverMiddleware: [
     // Will register redirect-ssl npm package
