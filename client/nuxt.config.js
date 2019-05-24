@@ -34,6 +34,7 @@ module.exports = {
     script: [
       // TODO use process.env.QUIZ
       { src: '//script.marquiz.ru/v1.js' },
+      { src: '/quiz.js' },
     ]
 
   },
@@ -94,7 +95,6 @@ module.exports = {
 
   env: {
     environment: process.env.NODE_ENV || 'development',
-    dialogflowApiKey: process.env.DIALOGFLOW_API_KEY || '02941f64654840a98378d7f0cfc33979',
     baseURL: process.env.API_URL || '/api',
     filestackApiKey: process.env.FILESTACK_API_KEY || 'A3lXl09sRSejY4e0pOOSQz',
     facebookAppId: process.env.FACEBOOK_APP_ID || '318731445375934',
@@ -105,6 +105,7 @@ module.exports = {
       // enter your gateway URL here, the function is just a helper
       // function for my cloud integration. You don't normally need it
       gateway: "https://dialogflow-web-v2.gateway.dialogflow.cloud.ushakov.co",
+      // gateway: "http://api.heavenweb.me/api/dialogs/",
       // mute microphone at start
       muted: false,
       // array of suggestions, displayed at the start screen
