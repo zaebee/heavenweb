@@ -18,6 +18,16 @@
     <b-collapse id="nav-main-collapse" is-nav>
       <div class="w-100">
         <b-navbar-nav align="right" class="mt-1">
+          <li
+            v-for="item in navigation"
+            :key="item"
+            class="nav-iten text-center text-md-left">
+            <router-link
+              :to="item"
+              class="nav-link">{{ item }}
+            </router-link>
+          </li>
+
           <b-nav-item class="text-center text-md-left">
             Команда
           </b-nav-item>
@@ -53,3 +63,14 @@
     </b-collapse>
   </b-navbar>
 </template>
+<script>
+  export default {
+    data() {
+      return {
+        navigation: [
+          'Команда', 'Проекты'
+        ]
+      }
+    }
+  }
+</script>
