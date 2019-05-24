@@ -1,9 +1,5 @@
 <template>
   <div>
-    <navbar-top
-      @show-lead="showLeadForm"
-      @hide-lead="hideLeadForm"
-    />
     <header-nav
       btn-go="Отправить"
       :large="false"

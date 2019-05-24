@@ -13,12 +13,11 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
+      { hid: 'og:description', property: 'og:description', content: pkg.desc},
       { name: 'yandex-verification', content: '' },
       { name: 'google-site-verification', content: '' },
-      { hid: 'description', name: 'description', content: 'Разработка одностраничных сайтов и сопровождение рекламных кампаний direct, adwords. Увеличиваем конверсии с помощью квизов, landing-page, чатботов и делаем, чтобы сайт работал на владельца бизнеса.' },
       { property: 'og:url', content: 'https://heavenweb.me' },
       { property: 'og:title', content: 'Heavenweb - команда разработки сайтов и рекламного продвижения.' },
-      { hid: 'og:description', property: 'og:description', content: 'Разработка одностраничных сайтов и сопровождение рекламных кампаний direct, adwords. Увеличиваем конверсии с помощью квизов и делаем, что сайт работал на владельца бизнеса.' },
       { property: 'og:type', content: 'website' },
       { property: 'og:image', content: 'https://heavenweb.me/graph.png' },
     ],
@@ -34,7 +33,6 @@ module.exports = {
     script: [
       // TODO use process.env.QUIZ
       { src: '//script.marquiz.ru/v1.js' },
-      { src: '/quiz.js' },
     ]
 
   },
@@ -132,17 +130,12 @@ module.exports = {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/rest-auth/login/', method: 'post', propertyName: 'data.token' },
-          user: { url: 'rest-auth/user/', method: 'get', propertyName: 'data' },
-          logout: false
-        }
-      },
-      facebook: {
-        client_id: process.env.FACEBOOK_APP_ID || '318731445375934',
-        userinfo_endpoint: 'https://graph.facebook.com/v3.1/me?fields=about,short_name,first_name,last_name,name,picture{url},email',
-        authorization_endpoint: 'https://facebook.com/v3.1/dialog/oauth',
-        scope: ['public_profile', 'email'],
-        // redirect_uri: `${process.env.BASE_URL || 'http://localhost:3000'}/callback`,
+          login: { url: 'token-auth/', method: 'post', propertyName: 'token' },
+          user: { url: 'rest-auth/user/', method: 'get', propertyName: false },
+          logout: { url: 'rest-auth/logout/' }
+        },
+        tokenRequired: true,
+        tokenType: 'JWT'
       },
     }
   },

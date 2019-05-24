@@ -3,7 +3,7 @@
     toggleable="lg"
     variant=""
     type="light">
-    <b-navbar-brand href="/">
+    <b-navbar-brand @click.prevent="$router.push('/')" href="/">
       <b-img
         width="36"
         src="/images/heaven.svg"
@@ -28,20 +28,18 @@
             </router-link>
           </li>
 
-          <b-nav-item class="text-center text-md-left">
-            Команда
+          <b-nav-item v-if="auth.user" class="text-center text-md-left">
+            {{auth.user.username}}
           </b-nav-item>
-          <b-nav-item class="text-center text-md-left">
-            Проекты
+          <b-nav-item v-else @click="$router.push('/register')" class="text-center text-md-left">
+            Регистрация
           </b-nav-item>
-          <b-nav-item class="text-center text-md-left">
-            Продвижение
+
+          <b-nav-item @click="$auth.logout()" v-if="auth.user" class="text-center text-md-left">
+            Выйти
           </b-nav-item>
-          <b-nav-item class="text-center text-md-left">
-            Разработка
-          </b-nav-item>
-          <b-nav-item class="text-center text-md-left">
-            Контакты
+          <b-nav-item @click="$router.push('/login')" v-else class="text-center text-md-left">
+            Войти
           </b-nav-item>
         </b-navbar-nav>
 
@@ -68,8 +66,9 @@
     data() {
       return {
         navigation: [
-          'Команда', 'Проекты'
-        ]
+          // 'Команда', 'Проекты'
+        ],
+        auth: this.$store.state.auth
       }
     }
   }
