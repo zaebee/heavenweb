@@ -17,6 +17,10 @@ django-environ = "*"
 google-api-core = "*"
 pandas = "*"
 numpy = "*"
+psycopg2 = "*"
+django-rest-auth = "*"
+uwsgi = "*"
+pip = "*"
 
 [requires]
 python_version = "3.7"

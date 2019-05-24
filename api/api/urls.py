@@ -6,7 +6,7 @@ from django.conf.urls.static import static   # add this
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/", include('core.urls'))       # add this
+    path('api/', include('core.urls')),
 ]
 
 # add this

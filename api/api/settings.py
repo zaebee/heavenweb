@@ -25,7 +25,11 @@ SECRET_KEY = 'x4!%n-^*l@d5=4x66-agft00l(g@x&qor&8(h1_t52s7&t624)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'heavenweb.me',
+    'api.heavenweb.me',
+]
+SITE_ID = 1
 
 
 # Application definition
@@ -37,10 +41,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'easy_thumbnails',
     'corsheaders',
-    'core'
+    'core',
+    'rest_auth',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.vk',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +69,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://api.heavenweb.me',
 )
 
 
@@ -141,3 +155,5 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
+from . settings_local import *

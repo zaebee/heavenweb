@@ -11,9 +11,12 @@ router.register(r'dialogs', DialogsViewSet)
 router.register(r'users', CreateUserView)
 
 urlpatterns = [
-    path(r'', include(router.urls)),
-    path(r'token-auth/', obtain_jwt_token),
-    path(r'dialogs/', DialogsViewSet)
+    path('', include(router.urls)),
+    path('token-auth/', obtain_jwt_token),
+    path('rest-auth/', include('rest_auth.urls')),
+    path('rest-auth/registration/', include('rest_auth.registration.urls')),
+
+    path('dialogs/', DialogsViewSet)
 ]
 
 'сколько стоит сайт?'
