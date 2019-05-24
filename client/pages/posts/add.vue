@@ -22,6 +22,11 @@
       </div>
       <div class="col-md-4">
         <form @submit.prevent="submitRecipe">
+          <b-alert
+            dismissible
+            :show="!!error"
+            class=""
+            variant="danger">{{error}}</b-alert>
           <div class="form-group">
             <label for>Название</label>
             <input type="text" class="form-control" v-model="post.title">
@@ -42,6 +47,7 @@
 </template>
 <script>
 export default {
+  middleware: 'auth',
   head() {
     return {
       title: "Создать пост"
@@ -54,7 +60,8 @@ export default {
         picture: "",
         content: "",
       },
-      preview: ""
+      preview: "",
+      error: null
     };
   },
   methods: {
@@ -87,6 +94,7 @@ export default {
         let response = await this.$axios.$post("/posts/", formData, config);
         this.$router.push("/posts/");
       } catch (e) {
+        this.error = e.response && e.response.data;
         console.log(e);
       }
     }

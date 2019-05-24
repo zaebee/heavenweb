@@ -1,6 +1,6 @@
 <template>
   <main
-    id="app"
+    id="chat"
     class="chat-animate"
     :class="{'collapsed': close}">
 

@@ -28,6 +28,9 @@
             </router-link>
           </li>
 
+          <b-nav-item v-if="auth.user" @click="$router.push('/posts')" class="text-center text-md-left">
+            Посты
+          </b-nav-item>
           <b-nav-item v-if="auth.user" class="text-center text-md-left">
             {{auth.user.username}}
           </b-nav-item>

@@ -9,7 +9,7 @@
       </div>
       <template v-for="post in posts">
         <div :key="post.id" class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <recipe-card :onDelete="deletePost" :post="post"></recipe-card>
+          <post-card :onDelete="deletePost" :post="post"></post-card>
         </div>
       </template>
     </div>
@@ -17,16 +17,17 @@
 </template>
 
 <script>
-import RecipeCard from "~/components/RecipeCard.vue";
+import PostCard from "~/components/PostCard.vue";
 
 export default {
+  middleware: 'auth',
   head() {
     return {
       title: "Posts list"
     };
   },
   components: {
-    RecipeCard
+    PostCard
   },
   async asyncData({ $axios, params }) {
     try {
