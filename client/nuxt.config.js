@@ -30,7 +30,12 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:400,500,900' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Rubik&display=swap' }
+    ],
+    script: [
+      // TODO use process.env.QUIZ
+      { src: '//script.marquiz.ru/v1.js' },
     ]
+
   },
 
   /*
