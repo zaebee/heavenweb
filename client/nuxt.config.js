@@ -157,7 +157,8 @@ module.exports = {
     gzip: true,
     exclude: [
       '/admin/**',
-      '/recipes/add',
+      '/login',
+      '/register',
     ],
     routes: [
       '/',
