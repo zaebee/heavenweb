@@ -93,7 +93,7 @@ module.exports = {
 
   env: {
     environment: process.env.NODE_ENV || 'development',
-    baseURL: process.env.API_URL || '/api',
+    baseURL: process.env.API_URL || 'http://localhost:8000/api',
     filestackApiKey: process.env.FILESTACK_API_KEY || 'A3lXl09sRSejY4e0pOOSQz',
     facebookAppId: process.env.FACEBOOK_APP_ID || '318731445375934',
     yandexMapsKey: process.env.YANDEX_MAPS_KEY || '28a17595-ef93-4576-bd46-42eee945d1cb',
@@ -114,7 +114,7 @@ module.exports = {
   },
   axios: {
     timeout: 30000,
-    baseURL: process.env.API_URL || '/api',
+    baseURL: process.env.API_URL || 'http://localhost:8000/api',
     headers: {'X-Requested-With': 'XMLHttpRequest'},
     xsrfCookieName: 'csrf-token',
     xsrfHeaderName: 'X-CSRFToken'
