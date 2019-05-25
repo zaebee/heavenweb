@@ -46,6 +46,7 @@
           </b-nav-item>
         </b-navbar-nav>
 
+<!--
         <b-navbar-nav align="right" class="my-3">
           <b-nav-item
             href="tel:+79535105359"
@@ -60,6 +61,7 @@
             Обратный звонок
           </b-btn>
         </b-navbar-nav>
+-->
       </div>
     </b-collapse>
   </b-navbar>
