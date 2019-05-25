@@ -2,8 +2,8 @@
 <b-container>
   <b-row class="text-center re-cases-links">
     <b-col md="12" sm="12">
-      <a class="" href="/cases" target="_blank"><span>Читайте про наши кейсы продвижения</span></a>
-      <a class="" href="/projects" target="_blank"><span>Интернет проекты</span></a>
+      <a class="col" href="/cases" target="_blank"><span>Читайте про наши кейсы продвижения</span></a>
+      <a class="col" href="/projects" target="_blank"><span>Интернет проекты</span></a>
     </b-col>
     <b-col md="4" sm="12">
       <!--
