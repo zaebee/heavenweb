@@ -5,7 +5,7 @@
         <img src="/images/idea.svg" class="icon float-left float-md-none mx-auto" alt=""/>
         <h2 class="pb-1 pt-0 clearfix">Проверим вашу бизнес идею</h2>
         <p class="nofear-item pb-5">
-          Вы запускаете свое дело и нет клиентов? Мы знаем, как быстро<br/> и недорого получить первые
+          Вы запускаете свое дело и не знаете, где взять клиентов? Мы знаем, как быстро<br/> и недорого получить первые
           заявки для вашего бизнеса c помощью <br/>квиз-страниц и рекламного трафика.
         </p>
         <img src="/images/ai.svg" class="icon float-left float-md-none mx-auto" alt=""/>
@@ -19,7 +19,7 @@
         <h2 class="pb-1 pt-1 clearfix">Поддержим брошенные сайты</h2>
         <p class="nofear-item pb-5">
           Мы сможем доработать ваш сайт или взять на ведение брошеную рекламную компанию, мы с радостью поможем вам
-          исправить <br/> ошибки и добавить новые фичи.
+          исправить <br/> ошибки и добавить новые фишки.
         </p>
         <img src="/images/suggestion.svg" class="icon float-left float-md-none mx-auto" alt=""/>
         <h2 class="pb-1 pt-1 clearfix">Настроим рекламную кампанию</h2>

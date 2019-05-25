@@ -1,9 +1,9 @@
 <template>
-  <b-row class="re-cases-links">
-    <b-col md="8" sm="12">
-      <a class="offer" href="/images/kp_website.pdf" target="_blank"><span>Коммерческое предложение по созданию сайта</span></a>
-      <a class="brief" href="/images/brif.pdf" target="_blank"><span>Скачать бриф</span></a>
-      <a class="offer" href="/images/kp_seo.pdf" target="_blank"><span>Коммерческое предложение по продвижению сайтов</span></a>
+<b-container>
+  <b-row class="text-center re-cases-links">
+    <b-col md="12" sm="12">
+      <a class="" href="/cases" target="_blank"><span>Читайте про наши кейсы продвижения</span></a>
+      <a class="" href="/projects" target="_blank"><span>Интернет проекты</span></a>
     </b-col>
     <b-col md="4" sm="12">
       <!--
@@ -14,6 +14,7 @@
       -->
     </b-col>
   </b-row>
+</b-container>
 </template>
 
 <script>
